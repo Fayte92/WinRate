@@ -4,11 +4,11 @@ CSE115a Project - University of California Stana Cruz
 
 <h3>Team Members:</h3>
 
-Andrew Leamy <aleamy@ucsc.edu>
-Yuhao Deng <ydeng22@ucsc.edu>,
-Chuanshi Zhu <czhu12@ucsc.edu>,
-Arin Redd <aredd@ucsc.edu>,
-Julius Fan <jzfan@ucsc.edu>
+Andrew Leamy <aleamy@ucsc.edu> <br>
+Yuhao Deng <ydeng22@ucsc.edu> <br>
+Chuanshi Zhu <czhu12@ucsc.edu> <br>
+Arin Redd <aredd@ucsc.edu> <br>
+Julius Fan <jzfan@ucsc.edu> <br>
 
 <h3>Meeting Times and Location:</h3>
 
