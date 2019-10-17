@@ -19,3 +19,5 @@ T/Th - 10:00 @Baskin 302
 
 Firebase / Android Studio Integration: https://firebase.google.com/docs/android/setup <br>
 Android Studio Documentation: https://developer.android.com/guide
+Scryfall API: https://scryfall.com/docs/api
+MTG API: https://docs.magicthegathering.io/
