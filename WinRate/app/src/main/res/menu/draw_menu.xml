@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navInputForm"
+            android:icon="@drawable/ic_input_form"
+            android:title="@string/input_form_menu_text" />
+        <item
+            android:id="@+id/navStatistics"
+            android:icon="@drawable/ic_stats"
+            android:title="@string/statistics_menu_text" />
+    </group>
 </menu>
