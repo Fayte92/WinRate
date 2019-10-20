@@ -1,0 +1,25 @@
+Implemented the store of user input and construct a database.
+
+Problem in prograss:
+
+For counting the total win and lose, 
+1)get current win and lose num from database,
+2)convert it to int type and add with the global variable, winCounter(winC) and loseCounter(loseC)
+3)push the final value to the database with setValue().
+
+However, this design isn't work correctly. The numb of total win and lose both remain 0 after I submit 
+one log the database. Still working on it.
+
+Database structure(theorical):
+
+UserUid(unique and unchangeable)
+	-total win num
+	-total lose num
+	-data0 
+		-Date
+		-Opponent Deck
+		-Player Deck
+		-Opponent name
+		-win or lose
+
+

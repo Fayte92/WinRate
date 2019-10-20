@@ -52,6 +52,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "247901959388-nvpfe0sfpjo8hnehugu80v3thf0nva1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ucsc.winrate",
+            "certificate_hash": "f11aa3724d16a2b810870c67e019951a252c42a3"
+          }
+        },
+        {
           "client_id": "247901959388-t1pnh04isaoq82t4t59p6gip6463dq3a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
