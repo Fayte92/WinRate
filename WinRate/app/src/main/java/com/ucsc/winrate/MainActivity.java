@@ -1,5 +1,6 @@
 package com.ucsc.winrate;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     EditText playerDeck,opponentName, opponentDeck;// EditText for user input.
     //View parentView;//ID of parent view for reference
     Switch WinLose;
-    Button submit;
+    Button submit,UserProfile;
 
     FirebaseDatabase mFireBase = FirebaseDatabase.getInstance();//declare Firebase database
     DatabaseReference myRef = mFireBase.getReference();//reference of database, mainly used by us as a path for storing files
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //parentView = findViewById(R.id.activityMain);
         //MyUtilities.setupUI(parentView);
 
+        UserProfile = findViewById(R.id.profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.activityMain);
@@ -70,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        UserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Userinfo.class) );
+            }
+        });
         //declare each element in the input layout
         //playerDeck = findViewById(R.id.playerDeckText);
         //opponentName = findViewById(R.id.opponentNameText);
