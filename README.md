@@ -17,6 +17,7 @@ T/Th - 10:00 @Baskin 302
 
 <h3>Useful Links:</h3>
 
+<strong>Top Priority:</strong> Room API tutorial https://codelabs.developers.google.com/codelabs/android-room-with-a-view <br>
 <strike>Firebase / Android Studio Integration: https://firebase.google.com/docs/android/setup</strike> <br>
 Room SQL interface guide: https://developer.android.com/training/data-storage/room<br>
 Android Studio Documentation: https://developer.android.com/guide  
