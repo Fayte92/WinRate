@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         //parentView = findViewById(R.id.activityMain);
         //MyUtilities.setupUI(parentView);
 
-        UserProfile = findViewById(R.id.profile);
+        //UserProfile = findViewById(R.id.profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.activityMain);
@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        UserProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Userinfo.class) );
-            }
-        });
+        //UserProfile.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View v) {
+              //  startActivity(new Intent(MainActivity.this, Userinfo.class) );
+            //}
+        //});
         //declare each element in the input layout
         //playerDeck = findViewById(R.id.playerDeckText);
         //opponentName = findViewById(R.id.opponentNameText);
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
+    //}
     //addData() will add the data to the firebase
     //private void addData(){
         //String UserID = curUser.getDisplayName();
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         //LargeData newdata = new LargeData(winC, loseC,  winData, DataName, curUser, myRef);
         //DataCounter++;
 
-    //}
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
