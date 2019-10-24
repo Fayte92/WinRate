@@ -1,3 +1,10 @@
+/*
+GameLogEntry.java
+Created by Andrew Leamy
+Oct 24 2019
+The GameLogEntry class represents the Master Table of the app's Game Log
+Each GameLogEntry instance is a row of that Master Table
+*/
 package com.ucsc.winrate.table_entities;
 
 import androidx.annotation.NonNull;
@@ -5,14 +12,13 @@ import androidx.room.*;
 
 import java.util.Date;
 
-//The GameLogEntry class represents the Master Table of the app
-//Each GameLogEntry instance is a row of the Master Table
-@Entity(tableName = "word_table")
+@Entity(tableName = "master_table")
 public class GameLogEntry {
 
-    //Column Data:
-    @PrimaryKey /*A Date object, being a combination of calendar date and time, will be the
-    //primary key for the master table. */
+    //Column Fields:
+
+    @PrimaryKey /*A Date object, being a combination of calendar date and system time, will be the
+    primary key for the master table. */
     @NonNull
     @ColumnInfo(name = "Date")
     private Date date;
@@ -31,7 +37,7 @@ public class GameLogEntry {
     private String userDeck;
 
 
-
+    //Constructor
     public GameLogEntry (Date date, boolean victoryCondition, String opponentName,
                         String opponentDeck, String userDeck){
         this.date = date;
