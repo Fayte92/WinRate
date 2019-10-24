@@ -12,7 +12,7 @@ Julius Fan <jzfan@ucsc.edu> <br>
 
 <h3>Meeting Times and Location:</h3>
 
-M/W - 10:45 @Baskin 302 <br>
+M - 10:45 @Baskin 302 <br>
 T/Th - 10:00 @Baskin 302
 
 <h3>Useful Links:</h3>
