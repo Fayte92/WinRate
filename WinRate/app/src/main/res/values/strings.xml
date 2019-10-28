@@ -8,10 +8,10 @@
     <string name='opponent_deck'>Opponent Deck</string>
     <string name='win'>Win</string>
     <string name='lose'>Lose</string>
-    <string name="player_deck_hint">Enter what deck you played.</string>
-    <string name="player_name_hint">Enter your name.</string>
-    <string name="opponent_deck_hint">Enter opponent\'s deck.</string>
-    <string name="opponent_name_hint">Enter opponent\'s name.</string>
+    <string name="player_deck_hint">Your Deck</string>
+    <string name="player_name_hint">Your Name</string>
+    <string name="opponent_deck_hint">Opponent\'s Deck</string>
+    <string name="opponent_name_hint">Opponent\'s Name</string>
     <string name="submit">Submit</string>
     <string name="input_form_menu_text">Input Form</string>
     <string name="statistics_menu_text">Statistics</string>

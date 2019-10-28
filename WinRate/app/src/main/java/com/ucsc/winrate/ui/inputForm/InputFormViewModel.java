@@ -10,7 +10,7 @@ public class InputFormViewModel extends ViewModel{
 
     public InputFormViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is input form fragment");
+        mText.setValue("Input Form");
     }
 
     public LiveData<String> getText() {
