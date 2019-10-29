@@ -21,7 +21,7 @@ public class GameLogEntry {
     primary key for the master table. */
     @NonNull
     @ColumnInfo(name = "Date")
-    private Date date;
+    private String date;
 
     @NonNull
     @ColumnInfo(name = "Win")
@@ -38,7 +38,7 @@ public class GameLogEntry {
 
 
     //Constructor
-    public GameLogEntry (Date date, boolean victoryCondition, String opponentName,
+    public GameLogEntry (String date, boolean victoryCondition, String opponentName,
                         String opponentDeck, String userDeck){
         this.date = date;
         this.victoryCondition = victoryCondition;
@@ -51,7 +51,7 @@ public class GameLogEntry {
 
     //Getter Functions:
 
-    public Date getDate(){
+    public String getDate(){
         return this.date;
     }
 

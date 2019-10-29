@@ -22,6 +22,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.View;
@@ -158,6 +160,14 @@ public class MainActivity extends AppCompatActivity {
 
         //LargeData newdata = new LargeData(winC, loseC,  winData, DataName, curUser, myRef);
         //DataCounter++;
+
+        /*BEGIN INITIALIZATION OF ROOM DATABASE*/
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final GameLogAdapter adapter = new GameLogAdapter(this);
+        //recyclerView.setAdapter(adapter);     bugs on these two lines
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        /*END INITIALIZATION OF ROOM DATABASE*/
 
     }
 
