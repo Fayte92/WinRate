@@ -20,11 +20,11 @@ import java.util.List;
 @Dao
 public interface GameLogEntryDao {
 
-    //addRow adds a GameLogEntry instance to the database as a new Table
+    //insertGameLogEntry adds a GameLogEntry instance to the database as a new Table
     //If newEntry has the same primary key as a row already in the database,
     //newEntry will overwrite the entry already in the database.
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void addRow(GameLogEntry newEntry);
+    void insertGameLogEntry(GameLogEntry newEntry);
 
     //Deletes all rows in the Master Table
     @Query("DELETE FROM master_table")
@@ -33,4 +33,7 @@ public interface GameLogEntryDao {
     //Returns a list of all GameLogEntry instances in the database, ordered descending by date
     @Query("SELECT * FROM master_table ORDER BY Date DESC")
     LiveData<List<GameLogEntry>> getAll();
+
+    @Query("SELECT * FROM master_table WHERE Date=:date")
+    LiveData<List<GameLogEntry>> getGameLogEntry(String date);
 }

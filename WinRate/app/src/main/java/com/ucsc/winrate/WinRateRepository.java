@@ -49,7 +49,7 @@ public class WinRateRepository {
 
         @Override
         protected Void doInBackground(final GameLogEntry... params) {
-            mAsyncTaskDao.addRow(params[0]);
+            mAsyncTaskDao.insertGameLogEntry(params[0]);
             return null;
         }
     }

@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         /*BEGIN INITIALIZATION OF ROOM DATABASE*/
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final GameLogAdapter adapter = new GameLogAdapter(this);
-        //recyclerView.setAdapter(adapter);     bugs on these two lines
+        //recyclerView.setAdapter(adapter);    // bugs on these two lines
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         /*END INITIALIZATION OF ROOM DATABASE*/
