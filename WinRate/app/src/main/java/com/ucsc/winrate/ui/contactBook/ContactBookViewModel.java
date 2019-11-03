@@ -1,16 +1,16 @@
-package com.ucsc.winrate.ui.stats;
+package com.ucsc.winrate.ui.contactBook;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class StatsViewModel extends ViewModel{
+public class ContactBookViewModel extends ViewModel{
 
     private MutableLiveData<String> mText;
 
-    public StatsViewModel() {
+    public ContactBookViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Statistics");
+        mText.setValue("Contact Book");
     }
 
     public LiveData<String> getText() {

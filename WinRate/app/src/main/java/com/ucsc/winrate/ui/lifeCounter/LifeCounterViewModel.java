@@ -1,16 +1,16 @@
-package com.ucsc.winrate.ui.stats;
+package com.ucsc.winrate.ui.lifeCounter;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class StatsViewModel extends ViewModel{
+public class LifeCounterViewModel extends ViewModel{
 
     private MutableLiveData<String> mText;
 
-    public StatsViewModel() {
+    public LifeCounterViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Statistics");
+        mText.setValue("Life Counter");
     }
 
     public LiveData<String> getText() {

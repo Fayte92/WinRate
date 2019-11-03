@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_inputForm, R.id.nav_stats)
+                R.id.navInputForm, R.id.navStatistics,R.id.navContactBook,R.id.navLifeCounter,R.id.navSettings)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -121,12 +121,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //});
 
 
-<<<<<<< HEAD
-    }
-=======
-
-    //}
->>>>>>> 467c9923aad38c2fe9fbd11e45d95ccffe45865c
     //addData() will add the data to the firebase
     //private void addData(){
     //String UserID = curUser.getDisplayName();
@@ -167,12 +161,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    //@Override
+    //public boolean onCreateOptionsMenu(Menu menu) {
         //Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.options_menu, menu);
-        return true;
-    }
+    //    getMenuInflater().inflate(R.menu.options_menu, menu);
+    //    return true;
+    //}
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -186,10 +180,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         switch (item.getItemId()) {
             case R.id.navInputForm:
-                navController.navigate(R.id.nav_inputForm);
+                navController.navigate(R.id.navInputForm);
                 break;
             case R.id.navStatistics:
-                navController.navigate(R.id.nav_stats);
+                navController.navigate(R.id.navStatistics);
+                break;
+            case R.id.navContactBook:
+                navController.navigate(R.id.navContactBook);
+                break;
+            case R.id.navLifeCounter:
+                navController.navigate(R.id.navLifeCounter);
+                break;
+            case R.id.navSettings:
+                navController.navigate(R.id.navSettings);
                 break;
         }
         return true;

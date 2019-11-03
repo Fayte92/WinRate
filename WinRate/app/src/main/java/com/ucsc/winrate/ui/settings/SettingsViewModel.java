@@ -1,16 +1,16 @@
-package com.ucsc.winrate.ui.stats;
+package com.ucsc.winrate.ui.settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class StatsViewModel extends ViewModel{
+public class SettingsViewModel extends ViewModel{
 
     private MutableLiveData<String> mText;
 
-    public StatsViewModel() {
+    public SettingsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Statistics");
+        mText.setValue("Settings");
     }
 
     public LiveData<String> getText() {

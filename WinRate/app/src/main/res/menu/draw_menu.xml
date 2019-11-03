@@ -10,5 +10,17 @@
             android:id="@+id/navStatistics"
             android:icon="@drawable/ic_stats"
             android:title="@string/statistics_menu_text" />
+        <item
+            android:id="@+id/navContactBook"
+            android:icon="@drawable/ic_contact_book"
+            android:title="@string/contact_book_menu_text" />
+        <item
+            android:id="@+id/navLifeCounter"
+            android:icon="@drawable/ic_life_counter"
+            android:title="@string/life_counter_menu_text" />
+        <item
+            android:id="@+id/navSettings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings_menu_text" />
     </group>
 </menu>

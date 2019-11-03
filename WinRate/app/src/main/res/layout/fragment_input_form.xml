@@ -12,41 +12,18 @@
     tools:context=".MainActivity">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/inputForm_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_inputForm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/input_form_title"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/inputForm_toolbar"
-        app:layout_constraintEnd_toEndOf="@+id/inputForm_toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/inputForm_toolbar" />
-
     <EditText
         android:id="@+id/playerDeckText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="@android:dimen/notification_large_icon_height"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/player_deck_hint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputForm_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="o" />
 
     <EditText
@@ -125,15 +102,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winSwitch" />
 
-    <Button
-        android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Winrate"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.093" />
 </androidx.constraintlayout.widget.ConstraintLayout>
