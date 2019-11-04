@@ -1,7 +1,6 @@
-package com.anychart.sample.charts;
+package com.ucsc.winrate;
 // https://github.com/AnyChart/AnyChart-Android
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.anychart.AnyChart;
@@ -13,7 +12,6 @@ import com.anychart.chart.common.listener.ListenersInterface;
 import com.anychart.charts.Pie;
 import com.anychart.enums.Align;
 import com.anychart.enums.LegendLayout;
-import com.anychart.sample.R;
 
 import java.util.ArrayList;
 import java.util.List;
