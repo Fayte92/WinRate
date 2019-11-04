@@ -1,16 +1,16 @@
-package com.ucsc.winrate.ui.inputForm;
+package com.ucsc.winrate.ui.contactBook;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class InputFormViewModel extends ViewModel{
+public class ContactBookViewModel extends ViewModel{
 
     private MutableLiveData<String> mText;
 
-    public InputFormViewModel() {
+    public ContactBookViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Input Form");
+        mText.setValue("Contact Book");
     }
 
     public LiveData<String> getText() {

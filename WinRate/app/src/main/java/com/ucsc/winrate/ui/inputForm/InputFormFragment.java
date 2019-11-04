@@ -23,13 +23,13 @@ public class InputFormFragment extends Fragment{
         inputFormViewModel =
                 ViewModelProviders.of(this).get(InputFormViewModel.class);
         View root = inflater.inflate(R.layout.fragment_input_form, container, false);
-        final TextView textView = root.findViewById(R.id.text_inputForm);
-        inputFormViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        //final TextView textView = root.findViewById(R.id.text_inputForm);
+        //inputFormViewModel.getText().observe(this, new Observer<String>() {
+        //    @Override
+        //    public void onChanged(@Nullable String s) {
+        //        textView.setText(s);
+        //    }
+        //});
         return root;
     }
 }

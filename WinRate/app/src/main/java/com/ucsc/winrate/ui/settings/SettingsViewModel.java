@@ -1,16 +1,16 @@
-package com.ucsc.winrate.ui.inputForm;
+package com.ucsc.winrate.ui.settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class InputFormViewModel extends ViewModel{
+public class SettingsViewModel extends ViewModel{
 
     private MutableLiveData<String> mText;
 
-    public InputFormViewModel() {
+    public SettingsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Input Form");
+        mText.setValue("Settings");
     }
 
     public LiveData<String> getText() {

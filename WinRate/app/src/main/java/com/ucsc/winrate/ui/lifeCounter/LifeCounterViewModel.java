@@ -1,16 +1,16 @@
-package com.ucsc.winrate.ui.inputForm;
+package com.ucsc.winrate.ui.lifeCounter;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class InputFormViewModel extends ViewModel{
+public class LifeCounterViewModel extends ViewModel{
 
     private MutableLiveData<String> mText;
 
-    public InputFormViewModel() {
+    public LifeCounterViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Input Form");
+        mText.setValue("Life Counter");
     }
 
     public LiveData<String> getText() {
