@@ -1,5 +1,5 @@
 package com.anychart.sample.charts;
-
+// https://github.com/AnyChart/AnyChart-Android
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
