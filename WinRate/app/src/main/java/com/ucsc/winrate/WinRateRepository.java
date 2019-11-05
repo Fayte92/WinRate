@@ -12,44 +12,76 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
-import com.ucsc.winrate.table_entities.GameLogEntry;
-import com.ucsc.winrate.table_entities.GameLogEntryDao;
+import com.ucsc.winrate.table_entities.*;
 
 import java.util.List;
 
 public class WinRateRepository {
 
     private GameLogEntryDao gameLogEntryDao;
-    private LiveData<List<GameLogEntry>> allGameLogEntries;
+    private OpponentProfileDao opponentProfileDao;
 
     //constructor:
-    WinRateRepository(Application application) {
+    public WinRateRepository(Application application) {
         WinRateRoomDatabase db = WinRateRoomDatabase.getDatabase(application);
         this.gameLogEntryDao = db.gameLogEntryDao();
-        this.allGameLogEntries = gameLogEntryDao.getAll();
+        this.opponentProfileDao = db.opponentProfileDao();
     }
 
-    //getter functions:
-    LiveData<List<GameLogEntry>> getAllGameLogEntries() {
-        return allGameLogEntries;
-    }
+    //SQL functions:
 
     public void insert (GameLogEntry gameLogEntry) {
-        new insertAsyncTask(this.gameLogEntryDao).execute(gameLogEntry);
+        new insertGameLogEntryAsyncTask(this.gameLogEntryDao).execute(gameLogEntry);
     }
 
-    //Private Sub-class insertAsyncTask
-    private static class insertAsyncTask extends AsyncTask<GameLogEntry, Void, Void> {
+    public void insert (OpponentProfile opponentProfile){
+        new insertOpponentProfileAsyncTask(this.opponentProfileDao).execute(opponentProfile);
+    }
+
+    public LiveData<List<GameLogEntry>> getAllGameLogEntries(){
+        return gameLogEntryDao.getAll();
+    }
+
+    public LiveData<List<OpponentProfile>> getAllOpponentProfiles(){
+        return opponentProfileDao.getAll();
+    }
+
+    public GameLogEntry getGameLogEntryByDate(String date){
+        return gameLogEntryDao.getGameLogEntry(date).getValue().get(0);
+    }
+
+    public OpponentProfile getOpponentProfileById(int id){
+        return opponentProfileDao.getOpponentProfile(id).getValue().get(0);
+    }
+
+
+    //Private Sub-classes insertAsyncTask
+    private static class insertGameLogEntryAsyncTask extends AsyncTask<GameLogEntry, Void, Void> {
 
         private GameLogEntryDao mAsyncTaskDao;
 
-        insertAsyncTask(GameLogEntryDao dao) {
+        insertGameLogEntryAsyncTask(GameLogEntryDao dao) {
             mAsyncTaskDao = dao;
         }
 
         @Override
         protected Void doInBackground(final GameLogEntry... params) {
             mAsyncTaskDao.insertGameLogEntry(params[0]);
+            return null;
+        }
+    }
+
+    private static class insertOpponentProfileAsyncTask extends AsyncTask<OpponentProfile, Void, Void> {
+
+        private OpponentProfileDao mAsyncTaskDao;
+
+        insertOpponentProfileAsyncTask(OpponentProfileDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final OpponentProfile... params) {
+            mAsyncTaskDao.insertOpponentProfile(params[0]);
             return null;
         }
     }

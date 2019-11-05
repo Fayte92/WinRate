@@ -74,6 +74,7 @@ public class OpponentProfile {
     }
 
     //Setter methods:
+    public void setId(@NonNull int id) { this.id = id;}
 
     public void setFirstName(@NonNull String firstName) {
         this.firstName = firstName;
