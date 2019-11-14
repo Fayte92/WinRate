@@ -34,7 +34,7 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
     private final LayoutInflater mInflater;
     private List<GameLogEntry> gameLogEntries; // Cached copy of words
 
-    GameLogAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    public GameLogAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
     @Override
     public GameLogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,7 +53,7 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
         }
     }
 
-    void setGameLogEntries(List<GameLogEntry> gameLogEntries){
+    public void setGameLogEntries(List<GameLogEntry> gameLogEntries){
         this.gameLogEntries = gameLogEntries;
         notifyDataSetChanged();
     }

@@ -15,14 +15,17 @@ import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.ucsc.winrate.GameLogAdapter;
 import com.ucsc.winrate.MainActivity;
 import com.ucsc.winrate.R;
 import com.ucsc.winrate.WinRateRepository;
 import com.ucsc.winrate.table_entities.GameLogEntry;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class InputFormFragment extends Fragment{
 
@@ -43,8 +46,18 @@ public class InputFormFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        inputFormViewModel =
-                ViewModelProviders.of(this).get(InputFormViewModel.class);
+        inputFormViewModel = ViewModelProvider(this).get(InputFormViewModel.class);
+
+        //Observer for cached database:
+        final GameLogAdapter adapter = new GameLogAdapter(getActivity());
+        inputFormViewModel.getAllGameLogEntries().observe(new Observer<java.util.List<GameLogEntry>>() {
+            @Override
+            public void onChanged(@Nullable final List<GameLogEntry> entries) {
+                adapter.setGameLogEntries(entries);
+
+            }
+        });
+
         View root = inflater.inflate(R.layout.fragment_input_form, container, false);
 
         playerDeckText = root.findViewById(R.id.playerDeckText);
