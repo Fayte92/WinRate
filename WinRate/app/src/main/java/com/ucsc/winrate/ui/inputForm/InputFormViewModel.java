@@ -29,7 +29,7 @@ public class InputFormViewModel extends ViewModel{
         return mText;
     }
 
-    public LiveData<List<GameLogEntry>> getAllGameLogEntries(){
+    public LiveData<java.util.List<GameLogEntry>> getAllGameLogEntries(){
         return this.allGameLogEntries;
     }
 
