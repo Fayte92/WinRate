@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ucsc.winrate.table_entities.GameLogEntry;
@@ -52,6 +53,10 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
             holder.gameLogView.setText("N/A");
         }
     }
+
+//    public LiveData<List<GameLogEntry>> getAllGameLogEntries(){
+//        return this.gameLogEntries;
+//    }
 
     public void setGameLogEntries(List<GameLogEntry> gameLogEntries){
         this.gameLogEntries = gameLogEntries;

@@ -46,17 +46,11 @@ public class InputFormFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        inputFormViewModel = ViewModelProvider(this).get(InputFormViewModel.class);
+        inputFormViewModel = new ViewModelProvider(this).get(InputFormViewModel.class);
 
         //Observer for cached database:
         final GameLogAdapter adapter = new GameLogAdapter(getActivity());
-        inputFormViewModel.getAllGameLogEntries().observe(new Observer<java.util.List<GameLogEntry>>() {
-            @Override
-            public void onChanged(@Nullable final List<GameLogEntry> entries) {
-                adapter.setGameLogEntries(entries);
-
-            }
-        });
+        inputFormViewModel.getAllGameLogEntries().observe(InputFormFragment.this, GameLogAdapter::setGameLogEntries);
 
         View root = inflater.inflate(R.layout.fragment_input_form, container, false);
 
