@@ -50,7 +50,15 @@ public class InputFormFragment extends Fragment{
 
         //Observer for cached database:
         final GameLogAdapter adapter = new GameLogAdapter(getActivity());
-        inputFormViewModel.getAllGameLogEntries().observe(InputFormFragment.this, GameLogAdapter::setGameLogEntries);
+
+        final Observer<List<GameLogEntry>> observer = new Observer<List<GameLogEntry>>(){
+            @Override
+            public void onChanged(@Nullable final List<GameLogEntry> entries) {
+                adapter.setGameLogEntries(entries);
+            }
+        };
+
+        inputFormViewModel.getAllGameLogEntries().observe(InputFormFragment.this, observer);
 
         View root = inflater.inflate(R.layout.fragment_input_form, container, false);
 
