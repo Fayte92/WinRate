@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ucsc.winrate.table_entities.GameLogEntry;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogViewHolder> {
@@ -33,7 +34,7 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
     }
 
     private final LayoutInflater mInflater;
-    private List<GameLogEntry> gameLogEntries; // Cached copy of words
+    private List<GameLogEntry> gameLogEntries = new ArrayList<>(); // Cached copy of words
 
     public GameLogAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
@@ -54,9 +55,9 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
         }
     }
 
-//    public LiveData<List<GameLogEntry>> getAllGameLogEntries(){
-//        return this.gameLogEntries;
-//    }
+    public List<GameLogEntry> getAllGameLogEntries(){
+        return this.gameLogEntries;
+    }
 
     public void setGameLogEntries(List<GameLogEntry> gameLogEntries){
         this.gameLogEntries = gameLogEntries;

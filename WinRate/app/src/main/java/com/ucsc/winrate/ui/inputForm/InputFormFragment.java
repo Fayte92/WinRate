@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,13 +32,15 @@ public class InputFormFragment extends Fragment{
 
     private InputFormViewModel inputFormViewModel;
 
-    String playerDeck, opponentName, opponentDeck;
+    private String playerDeck, opponentName, opponentDeck;
 
-    EditText playerDeckText;
-    EditText opponentNameText;
-    EditText opponentDeckText;
+     private EditText playerDeckText;
+     private EditText opponentNameText;
+     private EditText opponentDeckText;
 
-    Button submitButton;
+    private Button submitButton;
+
+    private Switch winSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -46,23 +49,16 @@ public class InputFormFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        inputFormViewModel = new ViewModelProvider(this).get(InputFormViewModel.class);
 
-        //Observer for cached database:
         final GameLogAdapter adapter = new GameLogAdapter(getActivity());
 
-//        final Observer<List<GameLogEntry>> observer = new Observer<List<GameLogEntry>>(){
-//            @Override
-//            public void onChanged(@Nullable final List<GameLogEntry> entries) {
-//                adapter.setGameLogEntries(entries);
-//            }
-//        };
+        inputFormViewModel = new ViewModelProvider(this).get(InputFormViewModel.class);
 
         inputFormViewModel.getAllGameLogEntries().observe(this, new Observer<List<GameLogEntry>>() {
             @Override
             public void onChanged(List<GameLogEntry> gameLogEntries) {
-                //Update RecyclerView
-                Toast.makeText(getActivity(), "onChanged called", Toast.LENGTH_SHORT).show();
+                adapter.setGameLogEntries(gameLogEntries);
+                //Toast.makeText(getActivity(), "onChanged called", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,6 +67,7 @@ public class InputFormFragment extends Fragment{
         playerDeckText = root.findViewById(R.id.playerDeckText);
         opponentNameText = root.findViewById(R.id.opponentNameText);
         opponentDeckText = root.findViewById(R.id.opponentDeckText);
+        winSwitch = root.findViewById(R.id.winSwitch);
 
 
         submitButton = root.findViewById(R.id.submitButton);
@@ -81,27 +78,24 @@ public class InputFormFragment extends Fragment{
                 opponentName = opponentNameText.getText().toString();
                 opponentDeck = opponentDeckText.getText().toString();
 
+
                 SimpleDateFormat sdf = new SimpleDateFormat("MM dd yyyy HH:mm:ss");
 
                 String curDate = sdf.format(new Date());
 
-                GameLogEntry newEntry = new GameLogEntry(curDate, true, opponentName, opponentDeck, playerDeck);
+                GameLogEntry newEntry = new GameLogEntry(curDate, winSwitch.isChecked(), opponentName, opponentDeck, playerDeck);
 
                 WinRateRepository repository = new WinRateRepository(getActivity().getApplication());
 
                 repository.insert(newEntry);
 
+                if(adapter.getItemCount() > 0){
+                    //Display the date of the most recently added entry
+                    String entryDate = adapter.getAllGameLogEntries().get(0).getDate();
+                    showToast(entryDate);
+                }
 
-
-                showToast("Submitted!");
-
-                //GameLogEntry theEntry = repository.getGameLogEntryByDate(curDate);
-
-                //showToast(theEntry.getOpponentName());
-                //showToast(playerDeck);
-                //showToast(opponentName);
-                //showToast(opponentDeck);
-
+                //showToast("Submitted!");
             }
         });
 

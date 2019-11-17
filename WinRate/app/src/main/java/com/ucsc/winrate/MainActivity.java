@@ -161,14 +161,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //LargeData newdata = new LargeData(winC, loseC,  winData, DataName, curUser, myRef);
     //DataCounter++;
 
-        /*BEGIN INITIALIZATION OF ROOM DATABASE*/
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final GameLogAdapter adapter = new GameLogAdapter(this);
-        //recyclerView.setAdapter(adapter);    // bugs on these two lines
-        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        /*END INITIALIZATION OF ROOM DATABASE*/
-
     }
 
     //@Override
