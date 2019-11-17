@@ -11,6 +11,7 @@ package com.ucsc.winrate.table_entities;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -24,7 +25,10 @@ public interface GameLogEntryDao {
     //If newEntry has the same primary key as a row already in the database,
     //newEntry will overwrite the entry already in the database.
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertGameLogEntry(GameLogEntry newEntry);
+    void insertGameLogEntry(GameLogEntry entry);
+
+    @Delete
+    void deleteGameLogEntry(GameLogEntry entry);
 
     //Deletes all rows in the Master Table
     @Query("DELETE FROM master_table")

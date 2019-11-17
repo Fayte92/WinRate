@@ -51,14 +51,20 @@ public class InputFormFragment extends Fragment{
         //Observer for cached database:
         final GameLogAdapter adapter = new GameLogAdapter(getActivity());
 
-        final Observer<List<GameLogEntry>> observer = new Observer<List<GameLogEntry>>(){
-            @Override
-            public void onChanged(@Nullable final List<GameLogEntry> entries) {
-                adapter.setGameLogEntries(entries);
-            }
-        };
+//        final Observer<List<GameLogEntry>> observer = new Observer<List<GameLogEntry>>(){
+//            @Override
+//            public void onChanged(@Nullable final List<GameLogEntry> entries) {
+//                adapter.setGameLogEntries(entries);
+//            }
+//        };
 
-        inputFormViewModel.getAllGameLogEntries().observe(InputFormFragment.this, observer);
+        inputFormViewModel.getAllGameLogEntries().observe(this, new Observer<List<GameLogEntry>>() {
+            @Override
+            public void onChanged(List<GameLogEntry> gameLogEntries) {
+                //Update RecyclerView
+                Toast.makeText(getActivity(), "onChanged called", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         View root = inflater.inflate(R.layout.fragment_input_form, container, false);
 
