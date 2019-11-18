@@ -11,6 +11,11 @@
         android:label="Input Form"
         tools:layout="@layout/fragment_input_form" />
 
+    <fragment
+        android:id="@+id/navGameLogTable"
+        android:name="com.ucsc.winrate.ui.inputForm.GameLogTableFragment"
+        android:label="Game Log Table"
+        tools:layout="@layout/fragment_game_log_table" />
 
     <fragment
         android:id="@+id/navStatistics"

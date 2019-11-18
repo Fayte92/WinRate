@@ -18,6 +18,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.ucsc.winrate.GameLogAdapter;
 import com.ucsc.winrate.MainActivity;
@@ -39,6 +41,7 @@ public class InputFormFragment extends Fragment{
      private EditText opponentDeckText;
 
     private Button submitButton;
+    private Button viewTableButton;
 
     private Switch winSwitch;
 
@@ -99,13 +102,16 @@ public class InputFormFragment extends Fragment{
             }
         });
 
-        //final TextView textView = root.findViewById(R.id.text_inputForm);
-        //inputFormViewModel.getText().observe(this, new Observer<String>() {
-        //    @Override
-        //    public void onChanged(@Nullable String s) {
-        //        textView.setText(s);
-        //    }
-        //});
+        viewTableButton = root.findViewById(R.id.viewTableButton);
+        viewTableButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+                navController.navigate(R.id.navGameLogTable);
+                }
+
+        });
+
         return root;
     }
 
