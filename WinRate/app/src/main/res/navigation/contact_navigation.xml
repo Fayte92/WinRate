@@ -17,4 +17,10 @@
         android:name="com.ucsc.winrate.ui.contactBook.DecksFragment"
         android:label="Decks"
         tools:layout="@layout/fragment_decks" />
+
+    <fragment
+        android:id="@+id/navContactsInput"
+        android:name="com.ucsc.winrate.ui.contactBook.ContactsInputFragment"
+        android:label="Contacts Input"
+        tools:layout="@layout/fragment_contacts_input" />
 </navigation>
