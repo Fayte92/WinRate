@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.ucsc.winrate.GameLogAdapter;
 import com.ucsc.winrate.R;
@@ -35,7 +37,15 @@ public class GameLogTableFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        View root = inflater.inflate(R.layout.fragment_game_log_table, container, false);
+
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view_game_log_table);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);
+
         final GameLogAdapter adapter = new GameLogAdapter(getActivity());
+
+        recyclerView.setAdapter(adapter);
 
         gameLogTableViewModel = new ViewModelProvider(this).get(GameLogTableViewModel.class);
 
@@ -47,7 +57,7 @@ public class GameLogTableFragment extends Fragment {
             }
         });
 
-        View root = inflater.inflate(R.layout.fragment_game_log_table, container, false);
+
 
         return root;
     }

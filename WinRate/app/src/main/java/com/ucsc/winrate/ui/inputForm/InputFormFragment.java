@@ -92,13 +92,17 @@ public class InputFormFragment extends Fragment{
 
                 repository.insert(newEntry);
 
-                if(adapter.getItemCount() > 0){
-                    //Display the date of the most recently added entry
-                    String entryDate = adapter.getAllGameLogEntries().get(0).getDate();
-                    showToast(entryDate);
-                }
+//                if(adapter.getItemCount() > 0){
+//                    //Display the date of the most recently added entry
+//                    String entryDate = adapter.getAllGameLogEntries().get(0).getDate();
+//                    showToast(entryDate);
+//                }
 
-                //showToast("Submitted!");
+                playerDeckText.setText("");
+                opponentNameText.setText("");
+                opponentDeckText.setText("");
+
+                showToast("Submitted!");
             }
         });
 
