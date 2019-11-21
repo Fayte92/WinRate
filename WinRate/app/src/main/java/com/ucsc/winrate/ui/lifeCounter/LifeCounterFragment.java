@@ -15,9 +15,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.ucsc.winrate.OpponentProfileAdapter;
 import com.ucsc.winrate.R;
 import com.ucsc.winrate.table_entities.OpponentProfile;
 import com.ucsc.winrate.ui.contactBook.ContactBookViewModel;
+
+import java.util.List;
 
 public class LifeCounterFragment extends Fragment{
 
@@ -40,9 +43,17 @@ public class LifeCounterFragment extends Fragment{
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         lifeCounterViewModel =
-                ViewModelProviders.of(this).get(LifeCounterViewModel.class);
+                new ViewModelProvider(this).get(LifeCounterViewModel.class);
         View root = inflater.inflate(R.layout.fragment_life_counter, container, false);
-        //profileViewModel = new ViewModelProvider(this).get(OpponentProfileViewModel.class);
+
+        final OpponentProfileAdapter adapter = new OpponentProfileAdapter(getActivity());
+        /*observer for opponent profiles table cache*/
+        lifeCounterViewModel.getAllOpponentProfiles().observe(this, new Observer<List<OpponentProfile>>() {
+            @Override
+            public void onChanged(List<OpponentProfile> opponentProfiles) {
+                adapter.setOpponentProfiles(opponentProfiles);
+            }
+        });
 
 
         mylife = root.findViewById(R.id.mylife);
@@ -51,6 +62,11 @@ public class LifeCounterFragment extends Fragment{
         mydeck = root.findViewById(R.id.mydeck);
         opponame = root.findViewById(R.id.opponame);
         oppodeck = root.findViewById(R.id.oppodeck);
+
+        /*Set my name equal to first name of first opponent profile entry*/
+        if(!adapter.getAllOpponentProfiles().isEmpty()){
+            myname.setText(adapter.getAllOpponentProfiles().get(0).getFirstName());
+        }
 
         //profileViewModel = new ViewModelProvider(this).get(OpponentProfileViewModel.class);
 

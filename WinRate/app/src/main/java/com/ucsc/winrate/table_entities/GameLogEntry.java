@@ -10,8 +10,6 @@ package com.ucsc.winrate.table_entities;
 import androidx.annotation.NonNull;
 import androidx.room.*;
 
-import java.util.Date;
-
 @Entity(tableName = "master_table")
 public class GameLogEntry {
 
@@ -25,7 +23,7 @@ public class GameLogEntry {
 
     @NonNull
     @ColumnInfo(name = "Win")
-    private boolean victoryCondition;
+    private boolean winStatus;
 
     @ColumnInfo(name = "Opponent")
     private String opponentName;
@@ -38,10 +36,10 @@ public class GameLogEntry {
 
 
     //Constructor
-    public GameLogEntry (String date, boolean victoryCondition, String opponentName,
+    public GameLogEntry (String date, boolean winStatus, String opponentName,
                         String opponentDeck, String userDeck){
         this.date = date;
-        this.victoryCondition = victoryCondition;
+        this.winStatus = winStatus;
         this.opponentName = opponentName;
         this.opponentDeck = opponentDeck;
         this.userDeck = userDeck;
@@ -55,8 +53,8 @@ public class GameLogEntry {
         return this.date;
     }
 
-    public boolean getVictoryCondition(){
-        return this.victoryCondition;
+    public boolean getWinStatus(){
+        return this.winStatus;
     }
 
     public String getOpponentName(){
@@ -69,6 +67,26 @@ public class GameLogEntry {
 
     public String getUserDeck(){
         return this.userDeck;
+    }
+
+    public void setDate(@NonNull String date) {
+        this.date = date;
+    }
+
+    public void setWinStatus(boolean winStatus) {
+        this.winStatus = winStatus;
+    }
+
+    public void setOpponentName(String opponentName) {
+        this.opponentName = opponentName;
+    }
+
+    public void setOpponentDeck(String opponentDeck) {
+        this.opponentDeck = opponentDeck;
+    }
+
+    public void setUserDeck(String userDeck) {
+        this.userDeck = userDeck;
     }
 
 }

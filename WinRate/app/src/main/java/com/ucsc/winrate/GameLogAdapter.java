@@ -25,11 +25,16 @@ import java.util.List;
 public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogViewHolder> {
 
     class GameLogViewHolder extends RecyclerView.ViewHolder {
-        private final TextView gameLogView;
+        private TextView textViewWinStatus;
+        private TextView textViewOpponentName;
+        private TextView textViewDate;
 
         private GameLogViewHolder(View itemView) {
             super(itemView);
-            gameLogView = itemView.findViewById(R.id.textView);
+            this.textViewWinStatus = itemView.findViewById(R.id.text_view_win_status);
+            this.textViewOpponentName = itemView.findViewById(R.id.text_view_opponent_name);
+            this.textViewDate = itemView.findViewById(R.id.text_view_date);
+
         }
     }
 
@@ -40,7 +45,7 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
 
     @Override
     public GameLogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.game_log_table_item, parent, false);
         return new GameLogViewHolder(itemView);
     }
 
@@ -48,10 +53,14 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
     public void onBindViewHolder(GameLogViewHolder holder, int position) {
         if (gameLogEntries != null) {
             GameLogEntry current = gameLogEntries.get(position);
-            holder.gameLogView.setText(current.getOpponentName()); //TODO: add rest of columns
+            holder.textViewWinStatus.setText(String.valueOf(current.getWinStatus()));
+            holder.textViewOpponentName.setText(current.getOpponentName());
+            holder.textViewDate.setText(current.getDate());
         } else {
             // Covers the case of data not being ready yet.
-            holder.gameLogView.setText("N/A");
+            holder.textViewWinStatus.setText("N/A");
+            holder.textViewOpponentName.setText("N/A");
+            holder.textViewDate.setText("N/A");
         }
     }
 
