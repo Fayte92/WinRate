@@ -1,19 +1,30 @@
 package com.ucsc.winrate.ui.contactBook;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ContactsViewModel extends ViewModel{
+import com.ucsc.winrate.WinRateRepository;
+import com.ucsc.winrate.table_entities.OpponentProfile;
 
-    private MutableLiveData<String> mText;
+import java.util.List;
 
-    public ContactsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("Contacts");
+public class ContactsViewModel extends AndroidViewModel {
+
+    private WinRateRepository repository;
+    private LiveData<List<OpponentProfile>>allOpponentProfiles; //cached copy of database
+
+    public ContactsViewModel(@NonNull Application application) {
+        super(application);
+        this.repository = new WinRateRepository(application);
+        this.allOpponentProfiles = repository.getAllOpponentProfiles();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<java.util.List<OpponentProfile>> getAllOpponentProfiles() {
+        return this.allOpponentProfiles;
     }
 }

@@ -18,19 +18,13 @@ public class ContactsInputViewModel extends AndroidViewModel {
 
     private WinRateRepository repository;
     private LiveData<List<OpponentProfile>> allOpponentProfiles; //cached copy of database
-    private MutableLiveData<String> mText;
 
     public ContactsInputViewModel(@NonNull Application application) {
         super(application);
-        mText = new MutableLiveData<>();
-        mText.setValue("Contacts");
         this.repository = new WinRateRepository(application);
         this.allOpponentProfiles = repository.getAllOpponentProfiles();
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
 
     public LiveData<java.util.List<OpponentProfile>> getAllOpponentProfiles(){
         return this.allOpponentProfiles;
