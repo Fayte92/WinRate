@@ -13,6 +13,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ucsc.winrate.OpponentProfileAdapter;
@@ -27,22 +29,27 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
     private ContactsViewModel contactsViewModel;
     private FloatingActionButton fab;
-    private ListView listView;
-    private ArrayList<String> contactNamesArray;
 
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        View root = inflater.inflate(R.layout.fragment_contacts, container, false);
+
+        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recycler_view_opponent_profile_table);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setHasFixedSize(true);
+
+
         final OpponentProfileAdapter adapter = new OpponentProfileAdapter(getActivity());
         contactsViewModel = new ViewModelProvider(this).get(ContactsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_contacts, container, false);
+
+        recyclerView.setAdapter(adapter);
+
         fab = root.findViewById(R.id.contactsInputButton);
         fab.setOnClickListener(this);
 
-        listView = (ListView) root.findViewById(R.id.contactsListView);
-        contactNamesArray = new ArrayList<String>();
 
         contactsViewModel.getAllOpponentProfiles().observe(this, new Observer<List<OpponentProfile>>() {
             @Override
@@ -50,20 +57,6 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
                 adapter.setOpponentProfiles(opponentProfiles);
             }
         });
-
-        // test code for putting dummy data into database without using entry form
-        ///OpponentProfile newEntry = new OpponentProfile("test", "test2", "test3");
-        ///WinRateRepository repository = new WinRateRepository(getActivity().getApplication());
-        // repository.insert(newEntry);
-
-        for (int i = 0; i < adapter.getAllOpponentProfiles().size(); i++) {
-            contactNamesArray.set(i, (String) adapter.getAllOpponentProfiles().get(i).getFirstName() + " " + adapter.getAllOpponentProfiles().get(i).getLastName());
-        }
-
-        if (contactNamesArray.size() > 0) {
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, contactNamesArray);
-        listView.setAdapter(listViewAdapter);
-        }
 
         return root;
     }

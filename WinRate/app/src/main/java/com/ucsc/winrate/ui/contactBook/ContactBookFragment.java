@@ -12,11 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.ucsc.winrate.GameLogAdapter;
+import com.ucsc.winrate.OpponentProfileAdapter;
 import com.ucsc.winrate.R;
+import com.ucsc.winrate.table_entities.GameLogEntry;
+import com.ucsc.winrate.table_entities.OpponentProfile;
+import com.ucsc.winrate.ui.inputForm.GameLogTableViewModel;
+
+import java.util.List;
 
 public class ContactBookFragment extends Fragment implements View.OnClickListener {
 
@@ -27,7 +35,7 @@ public class ContactBookFragment extends Fragment implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         contactBookViewModel =
-                ViewModelProviders.of(this).get(ContactBookViewModel.class);
+                new ViewModelProvider(this).get(ContactBookViewModel.class);
         View root = inflater.inflate(R.layout.fragment_contact_book, container, false);
 
         contactsButton = root.findViewById(R.id.contactsButton);
@@ -41,6 +49,7 @@ public class ContactBookFragment extends Fragment implements View.OnClickListene
         //        textView.setText(s);
         //    }
         //});
+
         return root;
     }
 
