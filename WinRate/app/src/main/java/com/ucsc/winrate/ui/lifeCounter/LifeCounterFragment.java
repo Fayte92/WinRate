@@ -64,9 +64,7 @@ public class LifeCounterFragment extends Fragment{
         oppodeck = root.findViewById(R.id.oppodeck);
 
         /*Set my name equal to first name of first opponent profile entry*/
-        if(!adapter.getAllOpponentProfiles().isEmpty()){
-            myname.setText(adapter.getAllOpponentProfiles().get(0).getFirstName());
-        }
+
 
         //profileViewModel = new ViewModelProvider(this).get(OpponentProfileViewModel.class);
 
@@ -80,6 +78,7 @@ public class LifeCounterFragment extends Fragment{
             public void onClick(View v) {
                 mlife++;
                 mylife.setText("" + mlife);
+
             }
         });
         oppp.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +112,8 @@ public class LifeCounterFragment extends Fragment{
 
 
 
+
+
         /*profileViewModel.getSingleProfileVM().observe(this, new Observer<OpponentProfile>() {
             @Override
             public void onChanged(@Nullable final OpponentProfile profile) {
@@ -124,5 +125,13 @@ public class LifeCounterFragment extends Fragment{
             }
         });*/
         return root;
+    }
+
+    public void onViewCreated (View view,
+                               Bundle savedInstanceState){
+        final OpponentProfileAdapter adapter = new OpponentProfileAdapter(getActivity());
+        if(!adapter.getAllOpponentProfiles().isEmpty()){
+            myname.setText(adapter.getAllOpponentProfiles().get(0).getFirstName());
+        }
     }
 }

@@ -19,6 +19,8 @@ public class ContactsFragment extends Fragment implements View.OnClickListener{
     private ContactsViewModel contactsViewModel;
     private FloatingActionButton fab;
 
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         contactsViewModel = new ViewModelProvider(this).get(ContactsViewModel.class);

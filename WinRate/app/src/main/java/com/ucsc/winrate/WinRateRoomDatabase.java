@@ -23,7 +23,6 @@ public abstract class WinRateRoomDatabase extends RoomDatabase {
     public abstract GameLogEntryDao gameLogEntryDao();
     public abstract OpponentProfileDao opponentProfileDao();
 
-
     //Database must be singleton to prevent errors
     //begin singleton code
     private static volatile WinRateRoomDatabase INSTANCE;
