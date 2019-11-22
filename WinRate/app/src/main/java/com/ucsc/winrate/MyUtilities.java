@@ -1,41 +1,55 @@
 package com.ucsc.winrate;
 
-import android.app.Activity;
-import android.view.Menu;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
+import android.os.Bundle;
+import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
-
-import com.google.android.material.navigation.NavigationView;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyUtilities {
-    static void closeKeyboard(Activity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-    }
+    public static class PieChartActivity extends AppCompatActivity {
 
-    static void setupUI(final View view) {
-        if (!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                public boolean onTouch(View v, MotionEvent event) {
-                    closeKeyboard((Activity)view.getContext());
-                    return false;
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_chart_common);
+
+            AnyChartView anyChartView = findViewById(R.id.any_chart_view);
+            anyChartView.setProgressBar(findViewById(R.id.progress_bar));
+
+            Pie pie = AnyChart.pie();
+
+            pie.setOnClickListener(new ListenersInterface.OnClickListener(new String[]{"x", "value"}) {
+                @Override
+                public void onClick(Event event) {
+                    Toast.makeText(PieChartActivity.this, event.getData().get("x") + ":" + event.getData().get("value"), Toast.LENGTH_SHORT).show();
                 }
             });
-        }
 
-        //If a layout container, iterate over children and seed recursion.
-        if (view instanceof ViewGroup) {
-            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
-                View innerView = ((ViewGroup) view).getChildAt(i);
-                setupUI(innerView);
-            }
+            List<DataEntry> data = new ArrayList<>();
+            data.add(new ValueDataEntry("Apples", 6371664));
+            data.add(new ValueDataEntry("Pears", 789622));
+            data.add(new ValueDataEntry("Bananas", 7216301));
+            data.add(new ValueDataEntry("Grapes", 1486621));
+            data.add(new ValueDataEntry("Oranges", 1200000));
+
+            pie.data(data);
+
+            pie.title("Fruits imported in 2015 (in kg)");
+
+            pie.labels().position("outside");
+
+            pie.legend().title().enabled(true);
+            pie.legend().title()
+                    .text("Retail channels")
+                    .padding(0d, 0d, 10d, 0d);
+
+            pie.legend()
+                    .position("center-bottom")
+                    .itemsLayout(LegendLayout.HORIZONTAL)
+                    .align(Align.CENTER);
+
+            anyChartView.setChart(pie);
         }
     }
 }
-

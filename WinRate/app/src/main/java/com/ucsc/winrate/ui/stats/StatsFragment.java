@@ -20,27 +20,79 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.net.Uri;
 
+import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.util.Log;
+import android.view.InflateException;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+
+
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+
+
+import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 import com.ucsc.winrate.R;
 
 public class StatsFragment extends Fragment{
 
-    private StatsViewModel statsViewModel;
+    public static Fragment newInstance() {
+        return new StatsFragment();
+    }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        statsViewModel =
-                ViewModelProviders.of(this).get(StatsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_stats, container, false);
-        //final TextView textView = root.findViewById(R.id.text_stats);
-        //statsViewModel.getText().observe(this, new Observer<String>() {
-        //    @Override
-        //    public void onChanged(@Nullable String s) {
-        //        textView.setText(s);
-        //    }
-        //});
-        return root;
+    private PieChart mChart;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_stats, container, false);
+
+        mChart = (PieChart) v.findViewById(R.id.pieChart);
+        mChart.getDescription().setText("WinRate Data");
+
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
+
+        mChart.setCenterTextTypeface(tf);
+        mChart.setCenterText(generateCenterText());
+        mChart.setCenterTextSize(10f);
+        mChart.setCenterTextTypeface(tf);
+
+        // radius of the center hole in percent of maximum radius
+        mChart.setHoleRadius(45f);
+        mChart.setTransparentCircleRadius(50f);
+
+        Legend l = mChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(false);
+
+        mChart.setData(grabWinRateData());
+
+        return v;
+    }
+
+    private SpannableString generateCenterText() {
+        SpannableString s = new SpannableString("Win Rate");
+        s.setSpan(new RelativeSizeSpan(2f), 0, 8, 0);
+        s.setSpan(new ForegroundColorSpan(Color.GRAY), 8, s.length(), 0);
+        return s;
     }
 }
