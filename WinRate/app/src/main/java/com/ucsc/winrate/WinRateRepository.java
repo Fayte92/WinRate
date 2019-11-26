@@ -20,7 +20,7 @@ public class WinRateRepository {
 
     private GameLogEntryDao gameLogEntryDao;
     private OpponentProfileDao opponentProfileDao;
-    private DeckProfileDao deckProfileDao;
+    // private DeckProfileDao deckProfileDao;
     private LiveData<List<GameLogEntry>> allGameLogEntries; //cached copy of game log entries
 
     //constructor:
@@ -28,7 +28,7 @@ public class WinRateRepository {
         WinRateRoomDatabase db = WinRateRoomDatabase.getDatabase(application);
         this.gameLogEntryDao = db.gameLogEntryDao();
         this.opponentProfileDao = db.opponentProfileDao();
-        this.deckProfileDao = db.deckProfileDao();
+        // this.deckProfileDao = db.deckProfileDao();
         allGameLogEntries = gameLogEntryDao.getAll();
     }
 

@@ -1,3 +1,4 @@
+/*
 package com.ucsc.winrate.table_entities;
 
 import androidx.annotation.NonNull;
@@ -62,4 +63,4 @@ public class DeckProfile {
     public void setOwnerID(int ownerID) {
         this.ownerID = ownerID;
     }
-}
+}*/

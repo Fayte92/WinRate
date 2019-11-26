@@ -1,3 +1,4 @@
+/*
 package com.ucsc.winrate.table_entities;
 
 import androidx.lifecycle.LiveData;
@@ -23,3 +24,4 @@ public interface DeckProfileDao {
     @Query("SELECT * FROM deck_profiles WHERE ID=:id")
     LiveData<List<DeckProfile>> getDeckProfile(int id);
 }
+*/
