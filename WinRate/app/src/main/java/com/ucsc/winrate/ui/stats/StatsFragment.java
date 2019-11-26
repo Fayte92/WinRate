@@ -54,14 +54,14 @@ import com.ucsc.winrate.R;
 
 public class StatsFragment extends Fragment{
 
-    public static Fragment newInstance() {
-        return new StatsFragment();
-    }
-
+    private StatsViewModel statsViewModel;
     private PieChart mChart;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        statsViewModel =
+                ViewModelProviders.of(this).get(StatsViewModel.class);
+
         View v = inflater.inflate(R.layout.fragment_stats, container, false);
 
         mChart = (PieChart) v.findViewById(R.id.pieChart);
