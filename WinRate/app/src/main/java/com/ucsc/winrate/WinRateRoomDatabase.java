@@ -17,11 +17,12 @@ import androidx.room.RoomDatabase;
 
 import com.ucsc.winrate.table_entities.*;
 
-@Database(entities = {GameLogEntry.class, OpponentProfile.class}, version = 1, exportSchema = false)
+@Database(entities = {GameLogEntry.class, OpponentProfile.class, DeckProfile.class}, version = 1, exportSchema = false)
 public abstract class WinRateRoomDatabase extends RoomDatabase {
     //Define Dao's for each table in the database
     public abstract GameLogEntryDao gameLogEntryDao();
     public abstract OpponentProfileDao opponentProfileDao();
+    public abstract DeckProfileDao deckProfileDao();
 
     //Database must be singleton to prevent errors
     //begin singleton code
