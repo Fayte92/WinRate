@@ -20,16 +20,14 @@ public class WinRateRepository {
 
     private GameLogEntryDao gameLogEntryDao;
     private OpponentProfileDao opponentProfileDao;
-    // private DeckProfileDao deckProfileDao;
-    private LiveData<List<GameLogEntry>> allGameLogEntries; //cached copy of game log entries
+    private DeckProfileDao deckProfileDao;
 
     //constructor:
     public WinRateRepository(Application application) {
         WinRateRoomDatabase db = WinRateRoomDatabase.getDatabase(application);
         this.gameLogEntryDao = db.gameLogEntryDao();
         this.opponentProfileDao = db.opponentProfileDao();
-        // this.deckProfileDao = db.deckProfileDao();
-        allGameLogEntries = gameLogEntryDao.getAll();
+        this.deckProfileDao = db.deckProfileDao();
     }
 
     //SQL functions:
@@ -38,25 +36,35 @@ public class WinRateRepository {
         new insertGameLogEntryAsyncTask(this.gameLogEntryDao).execute(gameLogEntry);
     }
 
-    public void delete (GameLogEntry entry){
-        new deleteGameLogEntryAsyncTask(this.gameLogEntryDao).execute(entry);
-    }
-
     public void insert (OpponentProfile opponentProfile){
         new insertOpponentProfileAsyncTask(this.opponentProfileDao).execute(opponentProfile);
     }
 
+    public void insert (DeckProfile deckProfile){
+        new insertDeckProfileAsyncTask(this.deckProfileDao).execute(deckProfile);
+    }
+
     public LiveData<List<GameLogEntry>> getAllGameLogEntries(){
-        return this.allGameLogEntries;
+        return gameLogEntryDao.getAll();
+    }
+
+    public LiveData<List<OpponentProfile>> getAllOpponentProfiles(){
+        return opponentProfileDao.getAll();
+    }
+
+    public LiveData<List<DeckProfile>> getAllDeckProfiles() {
+        return deckProfileDao.getAll();
+    }
+
+    public void delete(GameLogEntry entry){
+        new deleteGameLogEntryAsyncTask(this.gameLogEntryDao).execute(entry);
     }
 
     public void deleteAllGameLogEntries(){
         new deleteAllGameLogEntriesAsyncTask(this.gameLogEntryDao).execute();
     }
 
-    public LiveData<List<OpponentProfile>> getAllOpponentProfiles(){
-        return opponentProfileDao.getAll();
-    }
+
 
 //    public GameLogEntry getGameLogEntryByDate(String date){
 //        return gameLogEntryDao.getGameLogEntry(date).getValue().get(0);
@@ -67,7 +75,6 @@ public class WinRateRepository {
 //    }
 
 
-    //Private Sub-classes insertAsyncTask
     private static class insertGameLogEntryAsyncTask extends AsyncTask<GameLogEntry, Void, Void> {
 
         private GameLogEntryDao mAsyncTaskDao;
@@ -79,6 +86,34 @@ public class WinRateRepository {
         @Override
         protected Void doInBackground(final GameLogEntry... params) {
             mAsyncTaskDao.insertGameLogEntry(params[0]);
+            return null;
+        }
+    }
+
+    private static class insertOpponentProfileAsyncTask extends AsyncTask<OpponentProfile, Void, Void> {
+
+        private OpponentProfileDao mAsyncTaskDao;
+
+        insertOpponentProfileAsyncTask(OpponentProfileDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final OpponentProfile... params) {
+            mAsyncTaskDao.insertOpponentProfile(params[0]);
+            return null;
+        }
+    }
+
+    private static class insertDeckProfileAsyncTask extends AsyncTask<DeckProfile, Void, Void>{
+
+        private DeckProfileDao mAsyncTaskDao;
+
+        private insertDeckProfileAsyncTask(DeckProfileDao dao) { mAsyncTaskDao = dao; }
+
+        @Override
+        protected Void doInBackground(final DeckProfile... params) {
+            mAsyncTaskDao.insertDeckProfile(params[0]);
             return null;
         }
     }
@@ -113,18 +148,5 @@ public class WinRateRepository {
         }
     }
 
-    private static class insertOpponentProfileAsyncTask extends AsyncTask<OpponentProfile, Void, Void> {
 
-        private OpponentProfileDao mAsyncTaskDao;
-
-        insertOpponentProfileAsyncTask(OpponentProfileDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final OpponentProfile... params) {
-            mAsyncTaskDao.insertOpponentProfile(params[0]);
-            return null;
-        }
-    }
 }
