@@ -36,6 +36,7 @@ public class LifeCounterFragment extends Fragment{
     private TextView myname;
     private TextView mydeck;
     private TextView opponame;
+    private String defaultOpponentName = "A Stranger";
     private TextView oppodeck;
     private OpponentProfile curProfile;
     private int namenum = 0;
@@ -56,7 +57,11 @@ public class LifeCounterFragment extends Fragment{
             public void onChanged(List<OpponentProfile> opponentProfiles) {
                 adapter.setOpponentProfiles(opponentProfiles);
                 size = adapter.getAllOpponentProfiles().size();
-                opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                if(size > 0) {
+                    opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                } else{
+                    opponame.setText(defaultOpponentName);
+                }
                 String oname = opponame.getText().toString();
                 //listener.applyTexts(oname);
             }
@@ -84,12 +89,17 @@ public class LifeCounterFragment extends Fragment{
         downopponame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(namenum >= 1){
-                    namenum --;
+                if(size < 1){
+                    opponame.setText(defaultOpponentName);
+                } else if(namenum < 0) {
+                    namenum = size - 1;
                     opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
-                }else{
-                    namenum = (size-1);
+                }else if(namenum >= 1){
+                    namenum--;
                     opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                }else { //namenum == 0
+                    namenum = -1;
+                    opponame.setText(defaultOpponentName);
                 }
             }
         });
@@ -97,12 +107,17 @@ public class LifeCounterFragment extends Fragment{
         upopponame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(namenum < (size-1)){
+                if(size < 1) {
+                    opponame.setText(defaultOpponentName);
+                } else if(namenum < 0){
+                    namenum = 0;
+                    opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                }else if(namenum < (size-1)){
                     namenum++;
                     opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
                 }else if(namenum == (size-1)){
-                    namenum = 0;
-                    opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                    namenum = -1;
+                    opponame.setText(defaultOpponentName);
                 }
             }
         });

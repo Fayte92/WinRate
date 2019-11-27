@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -52,7 +53,6 @@ public class ContactsInputFragment extends Fragment{
             @Override
             public void onChanged(List<OpponentProfile> opponentProfiles) {
                 adapter.setOpponentProfiles(opponentProfiles);
-                //Toast.makeText(getActivity(), "onChanged called", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -74,10 +74,18 @@ public class ContactsInputFragment extends Fragment{
 
                 repository.insert(newEntry);
 
-            }
+                firstNameText.setText("");
+                lastNameText.setText("");
+                nicknameText.setText("");
 
-            //showToast("Submitted!");
+                showToast("Opponent Profile Submitted!");
+
+            }
         });
         return root;
+    }
+
+    private void showToast(String text){
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }
 }
