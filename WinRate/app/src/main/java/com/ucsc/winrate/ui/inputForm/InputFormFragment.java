@@ -102,7 +102,7 @@ public class InputFormFragment extends Fragment{
                 opponentNameText.setText("");
                 opponentDeckText.setText("");
 
-                showToast("Submitted!");
+                showToast("Game Log Entry Submitted!");
             }
         });
 
