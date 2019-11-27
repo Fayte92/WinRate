@@ -18,12 +18,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SignIn extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
+    View parentView;//ID of parent view for reference
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
+        parentView = findViewById(R.id.signInLayout);
+        //MyUtilities.setupUI(parentView);
         firebaseAuth = FirebaseAuth.getInstance();
 
         final EditText usernameEditText = findViewById(R.id.username);

@@ -22,7 +22,6 @@ public abstract class WinRateRoomDatabase extends RoomDatabase {
     //Define Dao's for each table in the database
     public abstract GameLogEntryDao gameLogEntryDao();
     public abstract OpponentProfileDao opponentProfileDao();
-    // public abstract DeckProfileDao deckProfileDao();
 
     //Database must be singleton to prevent errors
     //begin singleton code
