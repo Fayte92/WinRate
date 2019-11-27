@@ -79,7 +79,6 @@ public class ContactsInputFragment extends Fragment{
                 nicknameText.setText("");
 
                 showToast("Opponent Profile Submitted!");
-
             }
         });
         return root;

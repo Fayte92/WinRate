@@ -43,6 +43,16 @@ public class OpponentProfile {
         this.timesLostAgainst = 0;
     }
 
+    @Ignore
+    public OpponentProfile(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickname = firstName;
+        this.timesFaced = 0;
+        this.timesWonAgainst = 0;
+        this.timesLostAgainst = 0;
+    }
+
     //getter methods:
     public int getId() {
         return id;

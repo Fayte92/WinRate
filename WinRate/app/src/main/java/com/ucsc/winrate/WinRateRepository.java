@@ -64,6 +64,14 @@ public class WinRateRepository {
         new deleteAllGameLogEntriesAsyncTask(this.gameLogEntryDao).execute();
     }
 
+    public void deleteAllOpponentProfils(){
+        new deleteAllOpponentProfilesAsyncTask(this.opponentProfileDao).execute();
+    }
+
+    public void deleteAllDeckProfiles() {
+        new deleteAllDeckProfilesAsyncTask(this.deckProfileDao).execute();
+    }
+
 
 
 //    public GameLogEntry getGameLogEntryByDate(String date){
@@ -148,5 +156,29 @@ public class WinRateRepository {
         }
     }
 
+    private static class deleteAllOpponentProfilesAsyncTask extends AsyncTask<Void, Void, Void> {
 
+        private OpponentProfileDao mAsyncTaskDao;
+
+        private deleteAllOpponentProfilesAsyncTask(OpponentProfileDao dao) { mAsyncTaskDao = dao; }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mAsyncTaskDao.deleteAll();
+            return null;
+        }
+    }
+
+    private static class deleteAllDeckProfilesAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private DeckProfileDao mAsyncTaskDao;
+
+        private deleteAllDeckProfilesAsyncTask(DeckProfileDao dao){ mAsyncTaskDao = dao; }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mAsyncTaskDao.deleteAll();
+            return null;
+        }
+    }
 }

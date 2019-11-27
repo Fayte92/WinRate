@@ -24,8 +24,7 @@ public class DeckProfile {
     @ColumnInfo(name = "Owner ID")
     private int ownerID;
 
-    public DeckProfile(int id, @NonNull String name, String owner, int ownerID) {
-        this.id = id;
+    public DeckProfile(@NonNull String name, String owner, int ownerID) {
         this.name = name;
         this.owner = owner;
         this.ownerID = ownerID;

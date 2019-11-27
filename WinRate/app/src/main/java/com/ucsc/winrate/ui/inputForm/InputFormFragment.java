@@ -57,6 +57,7 @@ public class InputFormFragment extends Fragment{
 
         inputFormViewModel = new ViewModelProvider(this).get(InputFormViewModel.class);
 
+        //Observer for game log entry table
         inputFormViewModel.getAllGameLogEntries().observe(this, new Observer<List<GameLogEntry>>() {
             @Override
             public void onChanged(List<GameLogEntry> gameLogEntries) {
@@ -64,6 +65,7 @@ public class InputFormFragment extends Fragment{
                 //Toast.makeText(getActivity(), "onChanged called", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         View root = inflater.inflate(R.layout.fragment_input_form, container, false);
 

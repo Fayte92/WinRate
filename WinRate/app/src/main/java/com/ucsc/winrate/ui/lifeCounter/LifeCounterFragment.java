@@ -27,12 +27,12 @@ public class LifeCounterFragment extends Fragment{
     private TextView opponentlife;
     int mlife = 20;
     int olife = 20;
-    private Button myp;
-    private Button oppp;
-    private Button mym;
-    private Button oppm;
-    private Button upopponame;
-    private Button downopponame;
+    private Button myp; //My life plus button
+    private Button oppp; //Opponent life plus button
+    private Button mym; //My life minus button
+    private Button oppm; //Opponent life minus button
+    private Button upopponame; //Cycles UP through opponent names
+    private Button downopponame; //Cycles DOWN through opponent names
     private TextView myname;
     private TextView mydeck;
     private TextView opponame;
