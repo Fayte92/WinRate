@@ -39,9 +39,11 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
     }
 
     private final LayoutInflater mInflater;
-    private List<GameLogEntry> gameLogEntries = new ArrayList<>(); // Cached copy of words
+    private List<GameLogEntry> gameLogEntries = new ArrayList<>(); // Cached copy of game log table
 
-    public GameLogAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    public GameLogAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+    }
 
     @Override
     public GameLogViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -73,8 +75,6 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
         notifyDataSetChanged();
     }
 
-    // getItemCount() is called many times, and when it is first called,
-    // gameLogEntries has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
         if (gameLogEntries != null)

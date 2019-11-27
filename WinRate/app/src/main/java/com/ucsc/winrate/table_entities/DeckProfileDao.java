@@ -1,4 +1,4 @@
-/*
+
 package com.ucsc.winrate.table_entities;
 
 import androidx.lifecycle.LiveData;
@@ -21,7 +21,10 @@ public interface DeckProfileDao {
     @Query("DELETE FROM deck_profiles")
     void deleteAll();
 
+    @Query("SELECT * FROM deck_profiles ORDER BY Name DESC")
+    LiveData<List<DeckProfile>> getAll();
+
     @Query("SELECT * FROM deck_profiles WHERE ID=:id")
     LiveData<List<DeckProfile>> getDeckProfile(int id);
 }
-*/
+

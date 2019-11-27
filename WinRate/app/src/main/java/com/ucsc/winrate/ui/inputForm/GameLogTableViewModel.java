@@ -15,7 +15,7 @@ import java.util.List;
 public class GameLogTableViewModel extends AndroidViewModel {
 
     private WinRateRepository repository;
-    private LiveData<List<GameLogEntry>> allGameLogEntries; //cached copy of database
+    private LiveData<List<GameLogEntry>> allGameLogEntries; //cached copy of game log table
 
     public GameLogTableViewModel(@NonNull Application application) {
         super(application);

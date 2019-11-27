@@ -30,8 +30,6 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
     private ContactsViewModel contactsViewModel;
     private FloatingActionButton fab;
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -49,7 +47,6 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
         fab = root.findViewById(R.id.contactsInputButton);
         fab.setOnClickListener(this);
-
 
         contactsViewModel.getAllOpponentProfiles().observe(this, new Observer<List<OpponentProfile>>() {
             @Override
