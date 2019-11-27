@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.ucsc.winrate.WinRateRepository;
 import com.ucsc.winrate.table_entities.OpponentProfile;
@@ -31,7 +30,7 @@ public class LifeCounterViewModel extends AndroidViewModel {
         return mText;
     }
 
-    public LiveData<java.util.List<OpponentProfile>> getAllOpponentProfiles(){
+    public LiveData<List<OpponentProfile>> getAllOpponentProfiles(){
         return this.allOpponentProfiles;
     }
 

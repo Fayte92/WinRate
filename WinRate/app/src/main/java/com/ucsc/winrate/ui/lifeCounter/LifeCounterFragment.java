@@ -1,24 +1,21 @@
 package com.ucsc.winrate.ui.lifeCounter;
 
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.ucsc.winrate.OpponentProfileAdapter;
 import com.ucsc.winrate.R;
 import com.ucsc.winrate.table_entities.OpponentProfile;
-import com.ucsc.winrate.ui.contactBook.ContactBookViewModel;
 
 import java.util.List;
 
@@ -34,11 +31,17 @@ public class LifeCounterFragment extends Fragment{
     private Button oppp;
     private Button mym;
     private Button oppm;
+    private Button upopponame;
+    private Button downopponame;
     private TextView myname;
     private TextView mydeck;
     private TextView opponame;
     private TextView oppodeck;
     private OpponentProfile curProfile;
+    private int namenum = 0;
+    private String winCondition;
+    private int size;
+    //private LifeCounterFragmentListener listener;
     //private OpponentProfileViewModel profileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,6 +55,10 @@ public class LifeCounterFragment extends Fragment{
             @Override
             public void onChanged(List<OpponentProfile> opponentProfiles) {
                 adapter.setOpponentProfiles(opponentProfiles);
+                size = adapter.getAllOpponentProfiles().size();
+                opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                String oname = opponame.getText().toString();
+                //listener.applyTexts(oname);
             }
         });
 
@@ -63,8 +70,7 @@ public class LifeCounterFragment extends Fragment{
         opponame = root.findViewById(R.id.opponame);
         oppodeck = root.findViewById(R.id.oppodeck);
 
-        /*Set my name equal to first name of first opponent profile entry*/
-
+        //String currentName = adapter.getAllOpponentProfiles().get(0).getFirstName();
 
         //profileViewModel = new ViewModelProvider(this).get(OpponentProfileViewModel.class);
 
@@ -72,13 +78,42 @@ public class LifeCounterFragment extends Fragment{
         oppp = root.findViewById(R.id.oppp);
         mym = root.findViewById(R.id.mym);
         oppm = root.findViewById(R.id.oppm);
+        upopponame = root.findViewById(R.id.upopponame);
+        downopponame = root.findViewById(R.id.downopponame);
+
+        downopponame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(namenum >= 1){
+                    namenum --;
+                    opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                }else{
+                    namenum = (size-1);
+                    opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                }
+            }
+        });
+
+        upopponame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(namenum < (size-1)){
+                    namenum++;
+                    opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                }else if(namenum == (size-1)){
+                    namenum = 0;
+                    opponame.setText(adapter.getAllOpponentProfiles().get(namenum).getFirstName());
+                }
+            }
+        });
+
+
 
         myp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mlife++;
                 mylife.setText("" + mlife);
-
             }
         });
         oppp.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +129,9 @@ public class LifeCounterFragment extends Fragment{
                 if(mlife >= 1) {
                     mlife--;
                     mylife.setText("" + mlife);
+                }else{
+                    winCondition = String.valueOf(false);
+                    openDialog();
                 }
             }
         });
@@ -103,35 +141,69 @@ public class LifeCounterFragment extends Fragment{
                 if(olife >= 1) {
                     olife--;
                     opponentlife.setText("" + olife);
+                }else{
+                    winCondition = String.valueOf(true);
+                    openDialog();
                 }
             }
         });
 
         mylife.setText("" + mlife);
         opponentlife.setText("" + olife);
-
-
-
-
-
-        /*profileViewModel.getSingleProfileVM().observe(this, new Observer<OpponentProfile>() {
-            @Override
-            public void onChanged(@Nullable final OpponentProfile profile) {
-                String OpponentName = profile.getNickname();
-                String OpponentDeck = profile.getDeck();
-
-                opponame.setText(OpponentName);
-                oppodeck.setText(OpponentDeck);
-            }
-        });*/
         return root;
     }
+    public void openDialog(){
 
-    public void onViewCreated (View view,
-                               Bundle savedInstanceState){
-        final OpponentProfileAdapter adapter = new OpponentProfileAdapter(getActivity());
-        if(!adapter.getAllOpponentProfiles().isEmpty()){
-            myname.setText(adapter.getAllOpponentProfiles().get(0).getFirstName());
-        }
+
+        String myDeck = mydeck.getText().toString();
+        String opponentName = opponame.getText().toString();
+        String opponentDeck = oppodeck.getText().toString();
+        //String myDeck = "The tag for my deck";
+        //String opponentDeck = "The tag for opponent deck";
+        //winCondition = String.valueOf(true);
+
+        Bundle DATA = new Bundle();
+        DATA.putString("myDeck", myDeck);
+        DATA.putString("opponentName", opponentName);
+        DATA.putString("opponentDeck", opponentDeck);
+        DATA.putString("winCondition",winCondition);
+
+        NoticeDialog noticeForLifeCounter = new NoticeDialog();
+        noticeForLifeCounter.setArguments(DATA);
+        noticeForLifeCounter.show(getFragmentManager(),"Notice For Life Counter");
+
     }
+
+//
+//    public static NoticeDialog newInstance(String myDeck, String opponentName, String opponentDeck, String winCondition, String curDate){
+//        NoticeDialog f = new NoticeDialog();
+//        // Supply index input as an argument.
+//        Bundle args = new Bundle();
+//        args.putString("myDeck", myDeck);
+//        args.putString("opponentName", opponentName);
+//        args.putString("opponentDeck", opponentDeck);
+//        args.putString("winCondition",winCondition);
+//        args.putString("curDate", curDate);
+//        f.setArguments(args);
+//        return f;
+//    }
+
+    public static void PirntWTF( Bundle F){
+
+    }
+
+//    @Override
+//    public void onAttach(Context context){
+//        super.onAttach(context);
+//        try {
+//            listener = (LifeCounterFragmentListener) context;
+//        }catch(ClassCastException e){
+//            throw new ClassCastException(context.toString()+"iii");
+//        }
+//    }
+//
+//    public interface LifeCounterFragmentListener{
+//        void applyTexts(String oname);
+//    }
+
 }
