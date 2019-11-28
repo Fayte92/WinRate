@@ -62,6 +62,7 @@ public class StatsFragment extends Fragment{
 
         mChart = (PieChart) v.findViewById(R.id.pieChart);
         mChart.getDescription().setText("WinRate Data");
+        mChart.getDescription().setEnabled(false);
 
         mChart.setCenterText(generateCenterText());
         mChart.setCenterTextSize(10f);
@@ -75,6 +76,7 @@ public class StatsFragment extends Fragment{
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
+        l.setTextSize(15f);
 
         //Grab Game Log table data
 
@@ -95,15 +97,18 @@ public class StatsFragment extends Fragment{
                     }
                 }
 
-                float statusAmount[] = {numWin, numLoss };
-                String statusNames[] = {"Win", "Loss"};
+                float statusAmount[] = {numWin / (numWin + numLoss), numLoss / (numWin + numLoss)};
+                String statusNames[] = {"Win %", "Loss %"};
                 List<PieEntry> pieEntries = new ArrayList<>();
                 for (int i = 0; i < statusAmount.length; i++) {
                     pieEntries.add(new PieEntry(statusAmount[i], statusNames[i]));
                 }
-                PieDataSet dataSet = new PieDataSet(pieEntries, "Overall Winrate");
+                PieDataSet dataSet = new PieDataSet(pieEntries, "| Total Number of Games: " + (int) (numWin + numLoss));
                 dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                dataSet.setFormSize(15f);
+                dataSet.setValueTextSize(15f);
                 PieData data = new PieData(dataSet);
+                mChart.setUsePercentValues(true);
                 mChart.setData(data);
             }
         });
