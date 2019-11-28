@@ -57,10 +57,11 @@ public class GameLogTableFragment extends Fragment {
             }
         });
 
-
-
         return root;
     }
 
+    private void showToast(String text){
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    }
 
 }

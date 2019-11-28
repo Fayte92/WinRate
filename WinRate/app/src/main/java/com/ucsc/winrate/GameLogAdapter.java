@@ -39,7 +39,7 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
     }
 
     private final LayoutInflater mInflater;
-    private List<GameLogEntry> gameLogEntries = new ArrayList<>(); // Cached copy of game log table
+    private List<GameLogEntry> gameLogEntries; // Cached copy of game log table
 
     public GameLogAdapter(Context context) {
         mInflater = LayoutInflater.from(context);

@@ -34,7 +34,6 @@ public class LifeCounterViewModel extends AndroidViewModel {
         return this.allOpponentProfiles;
     }
 
-    //This method shouldn't be necessary:
     public void insert(OpponentProfile newProfile){
         repository.insert(newProfile);
     }

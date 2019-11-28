@@ -46,8 +46,7 @@ public class LifeCounterFragment extends Fragment{
     //private OpponentProfileViewModel profileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        lifeCounterViewModel =
-                new ViewModelProvider(this).get(LifeCounterViewModel.class);
+        lifeCounterViewModel =  new ViewModelProvider(this).get(LifeCounterViewModel.class);
         View root = inflater.inflate(R.layout.fragment_life_counter, container, false);
 
         final OpponentProfileAdapter adapter = new OpponentProfileAdapter(getActivity());
@@ -66,6 +65,14 @@ public class LifeCounterFragment extends Fragment{
                 //listener.applyTexts(oname);
             }
         });
+
+
+
+        if(adapter.getAllOpponentProfiles().isEmpty()){
+            showToast("ListEmpty");
+        }else{
+            showToast("not empty!");
+        }
 
 
         mylife = root.findViewById(R.id.mylife);
@@ -89,6 +96,11 @@ public class LifeCounterFragment extends Fragment{
         downopponame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(adapter.getAllOpponentProfiles().isEmpty()){
+                    showToast("ListEmpty");
+                }else{
+                    showToast("not empty!");
+                }
                 if(size < 1){
                     opponame.setText(defaultOpponentName);
                 } else if(namenum < 0) {
@@ -220,5 +232,9 @@ public class LifeCounterFragment extends Fragment{
 //    public interface LifeCounterFragmentListener{
 //        void applyTexts(String oname);
 //    }
+
+    private void showToast(String text){
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    }
 
 }
