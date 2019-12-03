@@ -46,7 +46,6 @@ public class NoticeDialog extends AppCompatDialogFragment {
         winCondition = curDATA.getString("winCondition");
 
 
-        testopponame = view.findViewById(R.id.testopponame);
 
         final GameLogAdapter adapter = new GameLogAdapter(getActivity());
 
