@@ -53,7 +53,6 @@ public class GameLogTableFragment extends Fragment {
             @Override
             public void onChanged(List<GameLogEntry> gameLogEntries) {
                 adapter.setGameLogEntries(gameLogEntries);
-                //Toast.makeText(getActivity(), "onChanged called", Toast.LENGTH_SHORT).show();
             }
         });
 

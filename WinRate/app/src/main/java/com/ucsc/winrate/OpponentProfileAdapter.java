@@ -25,22 +25,24 @@ import java.util.List;
 public class OpponentProfileAdapter extends RecyclerView.Adapter<OpponentProfileAdapter.OpponentProfileViewHolder> {
 
     class OpponentProfileViewHolder extends RecyclerView.ViewHolder {
-        private final TextView opponentProfileView;
+        private final TextView opponentProfileId;
+        private final TextView opponentName;
 
         private OpponentProfileViewHolder(View itemView) {
             super(itemView);
-            opponentProfileView = itemView.findViewById(R.id.textView);
+            opponentProfileId = itemView.findViewById(R.id.opponent_profile_id);
+            opponentName = itemView.findViewById(R.id.opponent_profile_opponent_name);
         }
     }
 
     private final LayoutInflater mInflater;
-    private List<OpponentProfile> opponentProfiles = new ArrayList<>(); // Cached copy of words
+    private List<OpponentProfile> opponentProfiles; // Cached copy of words
 
     public OpponentProfileAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
     @Override
     public OpponentProfileViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
+        View itemView = mInflater.inflate(R.layout.opponent_profile_table_item, parent, false);
         return new OpponentProfileViewHolder(itemView);
     }
 
@@ -48,10 +50,12 @@ public class OpponentProfileAdapter extends RecyclerView.Adapter<OpponentProfile
     public void onBindViewHolder(OpponentProfileViewHolder holder, int position) {
         if (opponentProfiles != null) {
             OpponentProfile current = opponentProfiles.get(position);
-            holder.opponentProfileView.setText(current.getNickname()); //TODO: add rest of columns
+            holder.opponentName.setText(current.getNickname());
+            holder.opponentProfileId.setText(Integer.toString(current.getId()));
         } else {
             // Covers the case of data not being ready yet.
-            holder.opponentProfileView.setText("N/A");
+            holder.opponentProfileId.setText("N/A");
+            holder.opponentName.setText("N/A");
         }
     }
 
