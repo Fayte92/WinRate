@@ -43,10 +43,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
     private String[] populateOpponentNames = {"Andrew Leamy", "Arin Redd", "Yuhao Deng",
             "Chuanshi Zhu", "Julius Fan", "Iron Man", "Captain America", "The Hulk", "Thor",
             "Prof. Gelder", "The Man", "Black Widow", "Vision", "Scarlet Witch", "Mom", "Adam Warlock",
-            ""};
+            "A Mysterious Stranger", "Hawkeye", "Ant-Man", "Deadpool", "Captain Marvel", "Your Evil Twin"};
 
     private String[] populateDeckNames = {"G/W Lifegain", "Vampire Tribal", "Eldrazi tron",
-    "Mardu Aggro", "Izzet Burn", "Oko is OP", "Generic Aggro", "Gerneric Midrange", "Generic Control"};
+    "Mardu Aggro", "Izzet Burn", "Oko is OP", "Generic Aggro", "Gerneric Midrange", "Generic Control",
+    "Ban Jace", "Unban Jace"};
 
     private Button populateGameLogsButton;
     private Button deleteGameLogsButton;

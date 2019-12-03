@@ -55,7 +55,12 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
     public void onBindViewHolder(GameLogViewHolder holder, int position) {
         if (gameLogEntries != null) {
             GameLogEntry current = gameLogEntries.get(position);
-            holder.textViewWinStatus.setText(String.valueOf(current.getWinStatus()));
+            if(current.getWinStatus()){
+                holder.textViewWinStatus.setText("Win");
+            } else {
+                holder.textViewWinStatus.setText("Loss");
+            }
+
             holder.textViewOpponentName.setText(current.getOpponentName());
             holder.textViewDate.setText(current.getDate());
         } else {
