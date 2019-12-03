@@ -84,7 +84,7 @@
 
     <TextView
         android:id="@+id/myname"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:text="myname"
         android:textColor="@android:color/white"
@@ -98,7 +98,7 @@
 
     <TextView
         android:id="@+id/mydeck"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="52dp"
         android:text="mydeck"
@@ -113,7 +113,7 @@
 
     <TextView
         android:id="@+id/oppodeck"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="52dp"
         android:rotation="180"
@@ -127,7 +127,7 @@
 
     <TextView
         android:id="@+id/opponame"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:rotation="180"
         android:textColor="@android:color/white"
