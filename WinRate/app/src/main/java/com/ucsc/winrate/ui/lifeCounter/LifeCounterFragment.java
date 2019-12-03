@@ -17,6 +17,11 @@ import com.ucsc.winrate.OpponentProfileAdapter;
 import com.ucsc.winrate.R;
 import com.ucsc.winrate.table_entities.OpponentProfile;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class LifeCounterFragment extends Fragment{
@@ -42,8 +47,7 @@ public class LifeCounterFragment extends Fragment{
     private int namenum = 0;
     private String winCondition;
     private int size;
-    //private LifeCounterFragmentListener listener;
-    //private OpponentProfileViewModel profileViewModel;
+    private String mynameget;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         lifeCounterViewModel =  new ViewModelProvider(this).get(LifeCounterViewModel.class);
@@ -62,7 +66,6 @@ public class LifeCounterFragment extends Fragment{
                     opponame.setText(defaultOpponentName);
                 }
                 String oname = opponame.getText().toString();
-                //listener.applyTexts(oname);
             }
         });
 
@@ -82,16 +85,19 @@ public class LifeCounterFragment extends Fragment{
         opponame = root.findViewById(R.id.opponame);
         oppodeck = root.findViewById(R.id.oppodeck);
 
-        //String currentName = adapter.getAllOpponentProfiles().get(0).getFirstName();
-
-        //profileViewModel = new ViewModelProvider(this).get(OpponentProfileViewModel.class);
-
         myp = root.findViewById(R.id.myp);
         oppp = root.findViewById(R.id.oppp);
         mym = root.findViewById(R.id.mym);
         oppm = root.findViewById(R.id.oppm);
         upopponame = root.findViewById(R.id.upopponame);
         downopponame = root.findViewById(R.id.downopponame);
+
+        GetName();
+        if(mynameget == null){
+            myname.setText("User Name");
+        }else {
+            myname.setText(mynameget);
+        }
 
         downopponame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,9 +191,6 @@ public class LifeCounterFragment extends Fragment{
         String myDeck = mydeck.getText().toString();
         String opponentName = opponame.getText().toString();
         String opponentDeck = oppodeck.getText().toString();
-        //String myDeck = "The tag for my deck";
-        //String opponentDeck = "The tag for opponent deck";
-        //winCondition = String.valueOf(true);
 
         Bundle DATA = new Bundle();
         DATA.putString("myDeck", myDeck);
@@ -201,38 +204,27 @@ public class LifeCounterFragment extends Fragment{
 
     }
 
-//
-//    public static NoticeDialog newInstance(String myDeck, String opponentName, String opponentDeck, String winCondition, String curDate){
-//        NoticeDialog f = new NoticeDialog();
-//        // Supply index input as an argument.
-//        Bundle args = new Bundle();
-//        args.putString("myDeck", myDeck);
-//        args.putString("opponentName", opponentName);
-//        args.putString("opponentDeck", opponentDeck);
-//        args.putString("winCondition",winCondition);
-//        args.putString("curDate", curDate);
-//        f.setArguments(args);
-//        return f;
-//    }
+    public void GetName(){
+        try {
+            FileInputStream fileInputStream = getContext().getApplicationContext().openFileInput("local_username.txt");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
 
-    public static void PirntWTF( Bundle F){
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuffer stringBuffer = new StringBuffer();
+            String DisUserName;
 
+            while ((DisUserName = bufferedReader.readLine()) != null){
+                stringBuffer.append(DisUserName);
+            }
+
+            mynameget = stringBuffer.toString();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-//    @Override
-//    public void onAttach(Context context){
-//        super.onAttach(context);
-//        try {
-//            listener = (LifeCounterFragmentListener) context;
-//        }catch(ClassCastException e){
-//            throw new ClassCastException(context.toString()+"iii");
-//        }
-//    }
-//
-//    public interface LifeCounterFragmentListener{
-//        void applyTexts(String oname);
-//    }
-
     private void showToast(String text){
         Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
     }

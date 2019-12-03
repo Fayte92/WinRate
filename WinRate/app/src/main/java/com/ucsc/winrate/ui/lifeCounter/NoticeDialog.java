@@ -28,7 +28,7 @@ public class NoticeDialog extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        final String myDeck, oName, opponentDeck, currentDate,winCondition;
+        final String myDeck, oName, opponentDeck,winCondition;
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.lifecounter_save_result, null);
@@ -56,7 +56,6 @@ public class NoticeDialog extends AppCompatDialogFragment {
             @Override
             public void onChanged(List<GameLogEntry> gameLogEntries) {
                 adapter.setGameLogEntries(gameLogEntries);
-                //Toast.makeText(getActivity(), "onChanged called", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -70,6 +69,7 @@ public class NoticeDialog extends AppCompatDialogFragment {
                         WinRateRepository repository = new WinRateRepository(getActivity().getApplication());
                         repository.insert(newEntry);
                         Toast.makeText(getActivity(),"Save Successful!",Toast.LENGTH_LONG).show();
+                        dialog.dismiss();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
