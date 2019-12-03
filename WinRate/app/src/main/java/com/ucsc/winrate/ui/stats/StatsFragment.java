@@ -85,7 +85,6 @@ public class StatsFragment extends Fragment{
         updateChartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showToast("clicked!");
                 List<GameLogEntry> allEntries = adapter.getAllGameLogEntries();
                 float numLoss = 0;
                 float numWin = 0;
@@ -133,7 +132,7 @@ public class StatsFragment extends Fragment{
 //        return data;
 //    }
 
-    private void showToast(String text){
-        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
-    }
+//    private void showToast(String text){
+//        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+//    }
 }

@@ -70,14 +70,6 @@ public class LifeCounterFragment extends Fragment{
         });
 
 
-
-        if(adapter.getAllOpponentProfiles().isEmpty()){
-            showToast("ListEmpty");
-        }else{
-            showToast("not empty!");
-        }
-
-
         mylife = root.findViewById(R.id.mylife);
         opponentlife = root.findViewById(R.id.opponentlife);
         myname = root.findViewById(R.id.myname);

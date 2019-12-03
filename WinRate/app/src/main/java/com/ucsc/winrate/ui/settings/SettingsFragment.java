@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -40,9 +41,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
 
     private SettingsViewModel settingsViewModel;
     private String[] populateOpponentNames = {"Andrew Leamy", "Arin Redd", "Yuhao Deng",
-            "Chuanshi Zhu", "Julius Fan", "Iron Man", "Captain America", "The Hulk", "Thor"};
-    private boolean[] populateWinStatus = {true, true, false, true, false, false, false,
-    true, false};
+            "Chuanshi Zhu", "Julius Fan", "Iron Man", "Captain America", "The Hulk", "Thor",
+            "Prof. Gelder", "The Man", "Black Widow", "Vision", "Scarlet Witch", "Mom", "Adam Warlock",
+            ""};
+
     private String[] populateDeckNames = {"G/W Lifegain", "Vampire Tribal", "Eldrazi tron",
     "Mardu Aggro", "Izzet Burn", "Oko is OP", "Generic Aggro", "Gerneric Midrange", "Generic Control"};
 
@@ -126,7 +128,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         WinRateRepository repository = new WinRateRepository(getActivity().getApplication());
-
+        Random rand = new Random();
+        int randName, randDeck, randOppDeck;
         switch (view.getId()) {
             case R.id.populateGameLogButton:
                 //Disable for 10 seconds to prevent gamelog entries with duplicate dates
@@ -143,40 +146,47 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
                 int offsetSeconds = Integer.parseInt(seconds.format(new Date()));
                 String curDate = sdf.format(new Date());
 
-                for (int i = 0; i < populateOpponentNames.length; i++){
+
+                for (int i = 0; i < 10; i++){
                     String offsetDate = curDate + ":" + String.valueOf(offsetSeconds);
-                    offsetSeconds++;
-                    //TODO add error handling for offset seconds going abouve 60
-                    GameLogEntry newEntry = new GameLogEntry(offsetDate, populateWinStatus[i],
-                            populateOpponentNames[i], populateDeckNames[i],
-                            populateDeckNames[populateDeckNames.length - (i+1)]);
+                    offsetSeconds++; //TODO add error handling for offset seconds going abouve 60
+                    randName = rand.nextInt(populateOpponentNames.length);
+                    randDeck = rand.nextInt(populateDeckNames.length);
+                    randOppDeck = rand.nextInt(populateDeckNames.length);
+                    GameLogEntry newEntry = new GameLogEntry(offsetDate, rand.nextBoolean(),
+                            populateOpponentNames[randName], populateDeckNames[randDeck],
+                            populateDeckNames[randOppDeck]);
                     repository.insert(newEntry);
                 }
 
-                showToast("9 Entries Added");
+                showToast("10 Entries Added");
                 break;
             case R.id.deleteGameLogButton:
                 repository.deleteAllGameLogEntries();
-                showToast("All Entries Deleted");
+                showToast("All Game Log Entries Deleted");
                 break;
             case R.id.populateOpponentProfileButton:
-                for (int i = 0; i < populateOpponentNames.length; i++){
-                    OpponentProfile newProfile = new OpponentProfile(populateOpponentNames[i], "");
+                for (int i = 0; i < 10; i++){
+                    randName = rand.nextInt(populateOpponentNames.length);
+                    OpponentProfile newProfile = new OpponentProfile(populateOpponentNames[randName], "");
                     repository.insert(newProfile);
                 }
-                showToast("9 Opponent Profiles Added");
+                showToast("10 Opponent Profiles Added");
                 break;
             case R.id.deleteOpponentProfileButton:
                 repository.deleteAllOpponentProfils();
                 showToast("All Opponent Profiles Deleted");
                 break;
             case R.id.populateDeckProfileButton:
-                for (int i = 0; i < populateDeckNames.length; i++){
-                    DeckProfile newProfile = new DeckProfile(populateDeckNames[i],
-                            populateOpponentNames[i],-1);
+
+                for (int i = 0; i < 10; i++){
+                    randName = rand.nextInt(populateOpponentNames.length);
+                    randDeck = rand.nextInt(populateDeckNames.length);
+                    DeckProfile newProfile = new DeckProfile(populateDeckNames[randDeck],
+                            populateOpponentNames[randName],-1);
                     repository.insert(newProfile);
                 }
-                showToast("9 Deck Profiles Added");
+                showToast("10 Deck Profiles Added");
                 break;
             case R.id.deleteDeckProfileButton:
                 repository.deleteAllDeckProfiles();

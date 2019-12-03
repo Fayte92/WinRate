@@ -51,7 +51,8 @@ public class OpponentProfileAdapter extends RecyclerView.Adapter<OpponentProfile
         if (opponentProfiles != null) {
             OpponentProfile current = opponentProfiles.get(position);
             holder.opponentName.setText(current.getNickname());
-            holder.opponentProfileId.setText(Integer.toString(current.getId()));
+            //holder.opponentProfileId.setText(Integer.toString(current.getId()));
+            holder.opponentProfileId.setText(Integer.toString(position) + 1);
         } else {
             // Covers the case of data not being ready yet.
             holder.opponentProfileId.setText("N/A");
