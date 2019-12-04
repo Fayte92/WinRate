@@ -28,12 +28,14 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
         private TextView textViewWinStatus;
         private TextView textViewOpponentName;
         private TextView textViewDate;
+        private TextView textViewOpponentDeck;
 
         private GameLogViewHolder(View itemView) {
             super(itemView);
             this.textViewWinStatus = itemView.findViewById(R.id.text_view_win_status);
             this.textViewOpponentName = itemView.findViewById(R.id.text_view_opponent_name);
             this.textViewDate = itemView.findViewById(R.id.text_view_date);
+            this.textViewOpponentDeck = itemView.findViewById(R.id.text_view_opponent_deck);
 
         }
     }
@@ -60,14 +62,15 @@ public class GameLogAdapter extends RecyclerView.Adapter<GameLogAdapter.GameLogV
             } else {
                 holder.textViewWinStatus.setText("Loss");
             }
-
             holder.textViewOpponentName.setText(current.getOpponentName());
             holder.textViewDate.setText(current.getDate());
+            holder.textViewOpponentDeck.setText(current.getOpponentDeck());
         } else {
             // Covers the case of data not being ready yet.
             holder.textViewWinStatus.setText("N/A");
             holder.textViewOpponentName.setText("N/A");
             holder.textViewDate.setText("N/A");
+            holder.textViewOpponentDeck.setText("N/A");
         }
     }
 

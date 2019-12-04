@@ -44,12 +44,12 @@ public class OpponentProfile {
     }
 
     @Ignore
-    public OpponentProfile(String firstName, String lastName){
+    public OpponentProfile(String firstName, String lastName, int timesWonAgainst){
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickname = firstName;
-        this.timesFaced = 0;
-        this.timesWonAgainst = 0;
+        this.timesFaced = timesWonAgainst;
+        this.timesWonAgainst = timesWonAgainst;
         this.timesLostAgainst = 0;
     }
 

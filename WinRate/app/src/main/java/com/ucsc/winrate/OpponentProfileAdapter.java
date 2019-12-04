@@ -27,11 +27,13 @@ public class OpponentProfileAdapter extends RecyclerView.Adapter<OpponentProfile
     class OpponentProfileViewHolder extends RecyclerView.ViewHolder {
         private final TextView opponentProfileId;
         private final TextView opponentName;
+        private final TextView timesBeaten;
 
         private OpponentProfileViewHolder(View itemView) {
             super(itemView);
-            opponentProfileId = itemView.findViewById(R.id.opponent_profile_id);
-            opponentName = itemView.findViewById(R.id.opponent_profile_opponent_name);
+            this.opponentProfileId = itemView.findViewById(R.id.opponent_profile_id);
+            this.opponentName = itemView.findViewById(R.id.opponent_profile_opponent_name);
+            this.timesBeaten = itemView.findViewById(R.id.text_view_times_beaten);
         }
     }
 
@@ -52,11 +54,13 @@ public class OpponentProfileAdapter extends RecyclerView.Adapter<OpponentProfile
             OpponentProfile current = opponentProfiles.get(position);
             holder.opponentName.setText(current.getNickname());
             //holder.opponentProfileId.setText(Integer.toString(current.getId()));
-            holder.opponentProfileId.setText(Integer.toString(position) + 1);
+            holder.opponentProfileId.setText(Integer.toString(position+1));
+            holder.timesBeaten.setText("Times Beaten: " + Integer.toString(current.getTimesWonAgainst()));
         } else {
             // Covers the case of data not being ready yet.
             holder.opponentProfileId.setText("N/A");
             holder.opponentName.setText("N/A");
+            holder.timesBeaten.setText("0");
         }
     }
 

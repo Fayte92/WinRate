@@ -169,7 +169,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener{
             case R.id.populateOpponentProfileButton:
                 for (int i = 0; i < 10; i++){
                     randName = rand.nextInt(populateOpponentNames.length);
-                    OpponentProfile newProfile = new OpponentProfile(populateOpponentNames[randName], "");
+                    OpponentProfile newProfile = new OpponentProfile(populateOpponentNames[randName],
+                            "", rand.nextInt(10));
                     repository.insert(newProfile);
                 }
                 showToast("10 Opponent Profiles Added");

@@ -32,6 +32,14 @@
             android:layout_toLeftOf="@id/opponent_profile_id"
             android:layout_alignParentLeft="true" />
 
+        <TextView
+            android:id="@+id/text_view_times_beaten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/opponent_profile_opponent_name"
+            android:maxLines="1"
+            android:text="Times beaten: "/>
+
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

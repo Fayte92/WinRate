@@ -46,7 +46,7 @@ public class DeckProfileAdapter extends RecyclerView.Adapter<DeckProfileAdapter.
         if (deckProfiles != null) {
             DeckProfile current = deckProfiles.get(position);
             //holder.textViewId.setText(String.valueOf(current.getId()));
-            holder.textViewId.setText(Integer.toString(position) + 1);
+            holder.textViewId.setText(Integer.toString(position + 1));
             holder.textViewName.setText(current.getName());
             holder.textViewOwner.setText(current.getOwner());
         } else {

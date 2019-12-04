@@ -94,11 +94,6 @@ public class LifeCounterFragment extends Fragment{
         downopponame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(adapter.getAllOpponentProfiles().isEmpty()){
-                    showToast("ListEmpty");
-                }else{
-                    showToast("not empty!");
-                }
                 if(size < 1){
                     opponame.setText(defaultOpponentName);
                 } else if(namenum < 0) {
